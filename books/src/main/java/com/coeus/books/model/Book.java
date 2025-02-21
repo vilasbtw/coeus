@@ -1,4 +1,4 @@
-package com.coeus.books;
+package com.coeus.books.model;
 
 import jakarta.persistence.*;
 
@@ -11,7 +11,7 @@ public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Column(name = "book_name", nullable = false)
     private String bookName;
@@ -34,11 +34,11 @@ public class Book {
 
     public Book() {}
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
