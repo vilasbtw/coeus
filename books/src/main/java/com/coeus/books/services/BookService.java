@@ -5,6 +5,8 @@ import com.coeus.books.model.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class BookService {
 
@@ -17,5 +19,9 @@ public class BookService {
 
     public Book findById(Long id) {
         return repository.findById(id).orElseThrow();
+    }
+
+    public List<Book> findAll() {
+        return repository.findAll();
     }
 }
