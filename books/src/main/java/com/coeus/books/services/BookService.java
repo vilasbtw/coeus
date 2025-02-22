@@ -25,6 +25,20 @@ public class BookService {
         return repository.findAll();
     }
 
+    public Book update(Book book) {
+        Book entity = findById(book.getId());
+
+        entity.setId(book.getId());
+        entity.setBookName(book.getBookName());
+        entity.setAuthorName(book.getAuthorName());
+        entity.setPublisherName(book.getPublisherName());
+        entity.setNumberOfPages(book.getNumberOfPages());
+        entity.setGenre(book.getGenre());
+        entity.setPrice(book.getPrice());
+
+        return repository.save(book);
+    }
+
     public void delete(Long id) {
         Book entity = findById(id);
         repository.delete(entity);
