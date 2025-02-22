@@ -22,9 +22,6 @@ public class Book {
     @Column(name = "publisher_name", nullable = false)
     private String publisherName;
 
-    @Column(name = "release_date", nullable = false)
-    private Date releaseDate;
-
     @Column(name = "number_of_pages", nullable = false)
     private int numberOfPages;
 
@@ -66,14 +63,6 @@ public class Book {
         this.publisherName = publisherName;
     }
 
-    public Date getReleaseDate() {
-        return releaseDate;
-    }
-
-    public void setReleaseDate(Date releaseDate) {
-        this.releaseDate = releaseDate;
-    }
-
     public int getNumberOfPages() {
         return numberOfPages;
     }
@@ -101,11 +90,11 @@ public class Book {
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Book book)) return false;
-        return id == book.id && numberOfPages == book.numberOfPages && Double.compare(price, book.price) == 0 && Objects.equals(bookName, book.bookName) && Objects.equals(authorName, book.authorName) && Objects.equals(publisherName, book.publisherName) && Objects.equals(releaseDate, book.releaseDate) && Objects.equals(genre, book.genre);
+        return id == book.id && numberOfPages == book.numberOfPages && Double.compare(price, book.price) == 0 && Objects.equals(bookName, book.bookName) && Objects.equals(authorName, book.authorName) && Objects.equals(publisherName, book.publisherName) && Objects.equals(genre, book.genre);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, bookName, authorName, publisherName, releaseDate, numberOfPages, genre, price);
+        return Objects.hash(id, bookName, authorName, publisherName, numberOfPages, genre, price);
     }
 }
