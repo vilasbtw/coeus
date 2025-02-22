@@ -4,6 +4,7 @@ import com.coeus.books.services.BookService;
 import com.coeus.books.model.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,5 +30,11 @@ public class BookController {
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Book> findAll() {
         return service.findAll();
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<?> delete(@PathVariable(value = "id") Long id) {
+        service.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }

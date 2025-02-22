@@ -24,4 +24,9 @@ public class BookService {
     public List<Book> findAll() {
         return repository.findAll();
     }
+
+    public void delete(Long id) {
+        Book entity = findById(id);
+        repository.delete(entity);
+    }
 }
