@@ -1,29 +1,37 @@
 package com.coeus.books.services;
 
+import com.coeus.books.dto.BookDTO;
 import com.coeus.books.exceptions.ResourceNotFoundException;
+import com.coeus.books.mapper.Mapper;
 import com.coeus.books.repositories.BookRepository;
 import com.coeus.books.models.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class BookService {
 
     @Autowired
     private BookRepository repository;
+    private Mapper mapper;
 
     public Book create(Book book) {
         return repository.save(book);
     }
 
-    public Book findById(Long id) {
-        return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("This resource could not be found."));
+    public BookDTO findById(Long id) {
+        return repository.findById(id)
+                .map(mapper)
+                .orElseThrow(() -> new ResourceNotFoundException("This resource could not be found."));
     }
 
-    public List<Book> findAll() {
-        return repository.findAll();
+    public List<BookDTO> findAll() {
+        return repository.findAll()
+                .stream()
+                .map(mapper).collect(Collectors.toList());
     }
 
     public Book update(Book book) {

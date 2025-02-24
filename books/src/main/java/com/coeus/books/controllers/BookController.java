@@ -1,5 +1,6 @@
 package com.coeus.books.controllers;
 
+import com.coeus.books.dto.BookDTO;
 import com.coeus.books.services.BookService;
 import com.coeus.books.models.Book;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +24,12 @@ public class BookController {
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Book findById(@PathVariable(value = "id") Long id) {
+    public BookDTO findById(@PathVariable(value = "id") Long id) {
         return service.findById(id);
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Book> findAll() {
+    public List<BookDTO> findAll() {
         return service.findAll();
     }
 
