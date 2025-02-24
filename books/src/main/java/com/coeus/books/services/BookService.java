@@ -1,7 +1,8 @@
 package com.coeus.books.services;
 
+import com.coeus.books.exceptions.ResourceNotFoundException;
 import com.coeus.books.repositories.BookRepository;
-import com.coeus.books.model.Book;
+import com.coeus.books.models.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +19,7 @@ public class BookService {
     }
 
     public Book findById(Long id) {
-        return repository.findById(id).orElseThrow();
+        return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("This resource could not be found."));
     }
 
     public List<Book> findAll() {

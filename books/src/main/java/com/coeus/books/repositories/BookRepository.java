@@ -1,6 +1,6 @@
 package com.coeus.books.repositories;
 
-import com.coeus.books.model.Book;
+import com.coeus.books.models.Book;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

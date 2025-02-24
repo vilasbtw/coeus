@@ -1,7 +1,7 @@
 package com.coeus.books.controllers;
 
 import com.coeus.books.services.BookService;
-import com.coeus.books.model.Book;
+import com.coeus.books.models.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

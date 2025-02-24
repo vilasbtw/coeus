@@ -1,8 +1,7 @@
-package com.coeus.books.model;
+package com.coeus.books.models;
 
 import jakarta.persistence.*;
 
-import java.util.Date;
 import java.util.Objects;
 
 @Entity
