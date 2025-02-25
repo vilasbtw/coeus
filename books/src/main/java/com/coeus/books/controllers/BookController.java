@@ -1,8 +1,8 @@
 package com.coeus.books.controllers;
 
-import com.coeus.books.dto.BookDTO;
-import com.coeus.books.services.BookService;
 import com.coeus.books.models.Book;
+import com.coeus.books.models.dtos.BookDTO;
+import com.coeus.books.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -19,8 +19,8 @@ public class BookController {
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE,
                  consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Book create(@RequestBody Book book) {
-        return service.create(book);
+    public BookDTO create(@RequestBody BookDTO bookDTO) {
+        return service.create(bookDTO);
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -35,8 +35,8 @@ public class BookController {
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE,
                 consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Book update(@RequestBody Book book) {
-        return service.update(book);
+    public BookDTO update(@RequestBody BookDTO bookDTO) {
+        return service.update(bookDTO);
     }
 
     @DeleteMapping(value = "/{id}")
