@@ -27,14 +27,14 @@ public class MockBook {
     public List<Book> mookBookEntities() {
         List<Book> books = new ArrayList<>();
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 15; i++) {
             books.add(mockBookEntity(i));
         }
         return books;
     }
 
-    public Book mockBookDTO() {
-        return mockBookEntity(0);
+    public BookDTO mockBookDTO() {
+        return mockBookDTO(0);
     }
 
     public BookDTO mockBookDTO(Integer number) {
@@ -52,7 +52,7 @@ public class MockBook {
     public List<BookDTO> mookBookDTOS() {
         List<BookDTO> booksDTO = new ArrayList<>();
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 15; i++) {
             booksDTO.add(mockBookDTO(i));
         }
         return booksDTO;
