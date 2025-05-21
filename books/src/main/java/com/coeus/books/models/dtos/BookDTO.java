@@ -5,7 +5,6 @@ package com.coeus.books.models.dtos;
 
 // To retrieve a value from a record class, we don't call getters, but the attributes instead, e.g.:
 // Instead of bookDTO.getId(), you should call bookDTO.id() only.
-
 public record BookDTO(
         Long id,
         String bookName,

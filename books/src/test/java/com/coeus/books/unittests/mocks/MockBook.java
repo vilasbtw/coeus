@@ -37,18 +37,17 @@ public class MockBook {
         return mockBookDTO(0);
     }
 
-public BookDTO mockBookDTO(Integer number) {
-    return new BookDTO(
-        number.longValue(),
-        "Book name: " + number,
-        "Author name: " + number,
-        "Publisher name: " + number,
-        number,
-        "Genre: " + number,
-        number.doubleValue()
-    );
-}
-
+    public BookDTO mockBookDTO(Integer number) {
+        return new BookDTO(
+            number.longValue(),
+            "Book name: " + number,
+            "Author name: " + number,
+            "Publisher name: " + number,
+            number,
+            "Genre: " + number,
+            number.doubleValue()
+        );
+    }
 
     public List<BookDTO> mookBookDTOS() {
         List<BookDTO> booksDTO = new ArrayList<>();
