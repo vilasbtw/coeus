@@ -1,6 +1,5 @@
 package com.coeus.books.controllers;
 
-import com.coeus.books.models.Book;
 import com.coeus.books.models.dtos.BookDTO;
 import com.coeus.books.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
