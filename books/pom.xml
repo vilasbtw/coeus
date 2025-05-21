@@ -29,7 +29,6 @@
     <properties>
         <java.version>21</java.version>
         <org.mapstruct.version>1.6.3</org.mapstruct.version>
-        <org.projectlombok.version>1.18.38</org.projectlombok.version>
     </properties>
     <dependencies>
         <dependency>
@@ -58,12 +57,6 @@
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
             <version>${org.mapstruct.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>${org.projectlombok.version}</version>
-            <scope>provided</scope>
         </dependency>
     </dependencies>
     <build>

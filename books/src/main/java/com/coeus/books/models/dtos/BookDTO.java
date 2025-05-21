@@ -3,10 +3,9 @@ package com.coeus.books.models.dtos;
 // Record are basic classes that has no business logic and used only for representing data
 // Very similar to Data Classes
 
-// import lombok.Builder;
+// To retrieve a value from a record class, we don't call getters, but the attributes instead, e.g.:
+// Instead of bookDTO.getId(), you should call bookDTO.id() only.
 
-// (toBuilder = true) allows increment or decrement attributes in the object BookDTO
-// @Builder(toBuilder = true)
 public record BookDTO(
         Long id,
         String bookName,

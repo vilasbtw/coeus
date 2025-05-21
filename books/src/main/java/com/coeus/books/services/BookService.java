@@ -52,15 +52,15 @@ public class BookService {
     }
 
     public BookDTO update(BookDTO bookDTO) {
-        Book entity = repository.findById(bookDTO.getId())
+        Book entity = repository.findById(bookDTO.id())
                 .orElseThrow(() -> new ResourceNotFoundException("This resource could not be found."));
 
-        entity.setBookName(bookDTO.getBookName());
-        entity.setAuthorName(bookDTO.getAuthorName());
-        entity.setPublisherName(bookDTO.getPublisherName());
-        entity.setNumberOfPages(bookDTO.getNumberOfPages());
-        entity.setGenre(bookDTO.getGenre());
-        entity.setPrice(bookDTO.getPrice());
+        entity.setBookName(bookDTO.bookName());
+        entity.setAuthorName(bookDTO.authorName());
+        entity.setPublisherName(bookDTO.publisherName());
+        entity.setNumberOfPages(bookDTO.numberOfPages());
+        entity.setGenre(bookDTO.genre());
+        entity.setPrice(bookDTO.price());
 
         repository.save(entity);
         return mapper.toDTO(entity);

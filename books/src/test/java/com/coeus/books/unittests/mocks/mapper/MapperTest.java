@@ -26,13 +26,13 @@ public class MapperTest {
     @Test
     public void parseEntityToDTOTest() {
         BookDTO bookDTO = mapper.toDTO(mocker.mockBookEntity());
-        assertEquals(Long.valueOf(0L), bookDTO.getId());
-        assertEquals("Book name: 0", bookDTO.getBookName());
-        assertEquals("Author name: 0", bookDTO.getAuthorName());
-        assertEquals("Publisher name: 0", bookDTO.getPublisherName());
-        assertEquals(0, bookDTO.getNumberOfPages());
-        assertEquals("Genre: 0", bookDTO.getGenre());
-        assertEquals(0, bookDTO.getPrice());
+        assertEquals(Long.valueOf(0L), bookDTO.id());
+        assertEquals("Book name: 0", bookDTO.bookName());
+        assertEquals("Author name: 0", bookDTO.authorName());
+        assertEquals("Publisher name: 0", bookDTO.publisherName());
+        assertEquals(0, bookDTO.numberOfPages());
+        assertEquals("Genre: 0", bookDTO.genre());
+        assertEquals(0, bookDTO.price());
     }
 
     @Test
@@ -52,31 +52,31 @@ public class MapperTest {
         List<BookDTO> bookDTOS = mapper.toDTOS(mocker.mookBookEntities());
 
         BookDTO bookDTO2 = bookDTOS.get(2);
-        assertEquals(Long.valueOf(2L), bookDTO2.getId());
-        assertEquals("Book name: 2", bookDTO2.getBookName());
-        assertEquals("Author name: 2", bookDTO2.getAuthorName());
-        assertEquals("Publisher name: 2", bookDTO2.getPublisherName());
-        assertEquals(2, bookDTO2.getNumberOfPages());
-        assertEquals("Genre: 2", bookDTO2.getGenre());
-        assertEquals(2, bookDTO2.getPrice());
+        assertEquals(Long.valueOf(2L), bookDTO2.id());
+        assertEquals("Book name: 2", bookDTO2.bookName());
+        assertEquals("Author name: 2", bookDTO2.authorName());
+        assertEquals("Publisher name: 2", bookDTO2.publisherName());
+        assertEquals(2, bookDTO2.numberOfPages());
+        assertEquals("Genre: 2", bookDTO2.genre());
+        assertEquals(2, bookDTO2.price());
 
         BookDTO bookDTO6 = bookDTOS.get(6);
-        assertEquals(Long.valueOf(6L), bookDTO6.getId());
-        assertEquals("Book name: 6", bookDTO6.getBookName());
-        assertEquals("Author name: 6", bookDTO6.getAuthorName());
-        assertEquals("Publisher name: 6", bookDTO6.getPublisherName());
-        assertEquals(6, bookDTO6.getNumberOfPages());
-        assertEquals("Genre: 6", bookDTO6.getGenre());
-        assertEquals(6, bookDTO6.getPrice());
+        assertEquals(Long.valueOf(6L), bookDTO6.id());
+        assertEquals("Book name: 6", bookDTO6.bookName());
+        assertEquals("Author name: 6", bookDTO6.authorName());
+        assertEquals("Publisher name: 6", bookDTO6.publisherName());
+        assertEquals(6, bookDTO6.numberOfPages());
+        assertEquals("Genre: 6", bookDTO6.genre());
+        assertEquals(6, bookDTO6.price());
 
         BookDTO bookDTO11 = bookDTOS.get(11);
-        assertEquals(Long.valueOf(11L), bookDTO11.getId());
-        assertEquals("Book name: 11", bookDTO11.getBookName());
-        assertEquals("Author name: 11", bookDTO11.getAuthorName());
-        assertEquals("Publisher name: 11", bookDTO11.getPublisherName());
-        assertEquals(11, bookDTO11.getNumberOfPages());
-        assertEquals("Genre: 11", bookDTO11.getGenre());
-        assertEquals(11, bookDTO11.getPrice());
+        assertEquals(Long.valueOf(11L), bookDTO11.id());
+        assertEquals("Book name: 11", bookDTO11.bookName());
+        assertEquals("Author name: 11", bookDTO11.authorName());
+        assertEquals("Publisher name: 11", bookDTO11.publisherName());
+        assertEquals(11, bookDTO11.numberOfPages());
+        assertEquals("Genre: 11", bookDTO11.genre());
+        assertEquals(11, bookDTO11.price());
     }
 
     @Test
