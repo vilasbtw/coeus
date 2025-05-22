@@ -16,9 +16,10 @@ Coeus is a RESTful API developed in Java using Spring Boot, designed to simulate
 ## Install:
 
 ### Prerequisites:
-In order to use Coeus API, make sure you have the following installed:
+In order to use the API, make sure you have the following programs installed:
 - Java 17+
 - MySQL
+- Maven
 - Postman (recommended)
 
 ### 1. Clone this repo
@@ -40,30 +41,12 @@ spring.datasource.password=
 ```
 
 ### 3. Set up the database
-> _This step won’t be necessary in the future, since we plan to support migrations with Flyway. Once implemented, the database will be automatically created when the application runs._
-
-For now, please run the following SQL code to set up the database:
+Please run the following SQL code to create the database:
 
 ```sql
 CREATE DATABASE coeus;
-
-USE coeus;
-
-CREATE TABLE book (
-	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	book_name VARCHAR(255) NOT NULL,
-	author_name VARCHAR(255) NOT NULL,
-	publisher_name VARCHAR(255) NOT NULL,
-	number_of_pages INT NOT NULL,
-	genre VARCHAR(255) NOT NULL,
-	price DOUBLE NOT NULL
-);
-
-INSERT INTO book
-(book_name, author_name, publisher_name, number_of_pages, genre, price)
-VALUES
-('Crime and Punishment', 'Fyodor Dostoevsky', 'Penguin Books', 600, 'Drama', 20);
 ```
+
 ### 4. Run the application
 Run `CoeusApplication.java`
 
@@ -130,10 +113,10 @@ localhost:8080/books/
 - [x] Implemented CRUD operations (`create(bookDTO)`, `findById(id)`, `findAll()`, `update(bookDTO)` and `delete(id)`)
 - [x] Added exception handling with custom error responses
 - [x] Applied the DTO pattern to manage Data Transfer Objects
+- [x] Add support for database migrations with Flyway
 
 ### Next Features:
-- [ ] Write unit tests using JUnit and Mockito
-- [ ] Add support for database migrations with Flyway
+- [ ] Write unit tests using JUnit and Mockito for the BookService class
 - [ ] Enable content negotiation (support for XML and YAML)
 - [ ] Implement HATEOAS
 - [ ] Document API with Swagger
