@@ -1,27 +1,51 @@
 package com.coeus.books.models.dtos;
 
-// Record are basic classes that has no business logic and used only for representing data
-// Very similar to Data Classes
+import org.springframework.hateoas.RepresentationModel;
 
-// To retrieve a value from a record class, we don't call getters, but the attributes instead, e.g.:
-// Instead of bookDTO.getId(), you should call bookDTO.id() only.
+public class BookDTO extends RepresentationModel<BookDTO> {
+    private Long id;
+    private String bookName;
+    private String authorName;
+    private String publisherName;
+    private int numberOfPages;
+    private String genre;
+    private double price;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+    public BookDTO(Long id, String bookName, String authorName, String publisherName, int numberOfPages, String genre, double price) {
+        this.id = id;
+        this.bookName = bookName;
+        this.authorName = authorName;
+        this.publisherName = publisherName;
+        this.numberOfPages = numberOfPages;
+        this.genre = genre;
+        this.price = price;
+    }
 
-// @JsonPropertyOrder({"book_name", "author_name", "publisher_name", "price", "number_of_pages", "id"})
-public record BookDTO(
-        Long id,
-        // @JsonProperty("book_name")
-        String bookName,
-        // @JsonProperty("author_name")
-        String authorName,
-        // @JsonProperty("publisher_name")
-        String publisherName,
-        // @JsonProperty("number_of_pages")
-        int numberOfPages,
-        // @JsonIgnore
-        String genre,
-        double price
-){}
+    public Long getId() {
+        return id;
+    }
+
+    public String getBookName() {
+        return bookName;
+    }
+
+    public String getAuthorName() {
+        return authorName;
+    }
+
+    public String getPublisherName() {
+        return publisherName;
+    }
+
+    public int getNumberOfPages() {
+        return numberOfPages;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+}
