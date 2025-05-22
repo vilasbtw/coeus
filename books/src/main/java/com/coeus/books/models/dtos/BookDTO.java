@@ -10,18 +10,18 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-@JsonPropertyOrder({"book_name", "author_name", "publisher_name", "price", "number_of_pages", "id"})
+// @JsonPropertyOrder({"book_name", "author_name", "publisher_name", "price", "number_of_pages", "id"})
 public record BookDTO(
         Long id,
-        @JsonProperty("book_name")
+        // @JsonProperty("book_name")
         String bookName,
-        @JsonProperty("author_name")
+        // @JsonProperty("author_name")
         String authorName,
-        @JsonProperty("publisher_name")
+        // @JsonProperty("publisher_name")
         String publisherName,
-        @JsonProperty("number_of_pages")
+        // @JsonProperty("number_of_pages")
         int numberOfPages,
-        @JsonIgnore
+        // @JsonIgnore
         String genre,
         double price
 ){}

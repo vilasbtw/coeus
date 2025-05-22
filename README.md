@@ -114,11 +114,12 @@ localhost:8080/books/
 - [x] Added exception handling with custom error responses
 - [x] Applied the DTO pattern to manage Data Transfer Objects
 - [x] Add support for database migrations with Flyway
+- [x] Enable content negotiation (support for XML and YAML)
 
 ### Next Features:
-- [ ] Write unit tests using JUnit and Mockito for the BookService class
-- [ ] Enable content negotiation (support for XML and YAML)
 - [ ] Implement HATEOAS
 - [ ] Document API with Swagger
+- [ ] Write unit tests using JUnit and Mockito for the BookService class
+- [ ] Implement the Person endpoint
 - [ ] Write integration tests with Testcontainers and REST Assured
 - [ ] Configure and enable CORS
