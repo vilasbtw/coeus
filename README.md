@@ -115,11 +115,11 @@ localhost:8080/books/
 - [x] Applied the DTO pattern to manage Data Transfer Objects
 - [x] Add support for database migrations with Flyway
 - [x] Enable content negotiation (support for XML and YAML)
+- [x] Implement HATEOAS
+- [x] Write unit tests using JUnit and Mockito for the BookService class
 
 ### Next Features:
-- [ ] Implement HATEOAS
 - [ ] Document API with Swagger
-- [ ] Write unit tests using JUnit and Mockito for the BookService class
 - [ ] Implement the Person endpoint
 - [ ] Write integration tests with Testcontainers and REST Assured
 - [ ] Configure and enable CORS
