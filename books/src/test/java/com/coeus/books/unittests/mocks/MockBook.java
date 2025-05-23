@@ -38,15 +38,15 @@ public class MockBook {
     }
 
     public BookDTO mockBookDTO(Integer number) {
-        return new BookDTO(
-            number.longValue(),
-            "Book name: " + number,
-            "Author name: " + number,
-            "Publisher name: " + number,
-            number,
-            "Genre: " + number,
-            number.doubleValue()
-        );
+        BookDTO bookDTO = new BookDTO();
+        bookDTO.setId(number.longValue());
+        bookDTO.setBookName("Book name: " + number);
+        bookDTO.setAuthorName("Author name: " + number);
+        bookDTO.setPublisherName("Publisher name: " + number);
+        bookDTO.setNumberOfPages(number);
+        bookDTO.setGenre("Genre: " + number);
+        bookDTO.setPrice(number);
+        return bookDTO;
     }
 
     public List<BookDTO> mookBookDTOS() {
