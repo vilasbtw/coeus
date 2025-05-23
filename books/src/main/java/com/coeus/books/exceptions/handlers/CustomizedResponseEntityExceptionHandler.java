@@ -1,6 +1,7 @@
 package com.coeus.books.exceptions.handlers;
 
 import com.coeus.books.exceptions.ExceptionResponse;
+import com.coeus.books.exceptions.RequiredObjectIsNullException;
 import com.coeus.books.exceptions.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,5 +25,11 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
     public ResponseEntity<ExceptionResponse> handleResourceNotFoundException(Exception message, WebRequest details) {
         ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), message.getMessage(), details.getDescription(false));
         return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(RequiredObjectIsNullException.class)
+    public ResponseEntity<ExceptionResponse> handleRequiredObjectIsNullException(Exception message, WebRequest details) {
+        ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), message.getMessage(), details.getDescription(false));
+        return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
     }
 }

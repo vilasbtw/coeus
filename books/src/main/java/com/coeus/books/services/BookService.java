@@ -1,6 +1,7 @@
 package com.coeus.books.services;
 
 import com.coeus.books.controllers.BookController;
+import com.coeus.books.exceptions.RequiredObjectIsNullException;
 import com.coeus.books.exceptions.ResourceNotFoundException;
 import com.coeus.books.models.dtos.BookDTO;
 import com.coeus.books.models.mapper.BookMapper;
@@ -31,6 +32,9 @@ public class BookService {
     // BookDTO is converted to Book, so repository can manipulate it
     // Then, after saving it, we will convert Book to BookDTO again and return it to the client
     public BookDTO create(BookDTO bookDTO) {
+
+        if (bookDTO == null) throw new RequiredObjectIsNullException();
+
         Book entity = mapper.toEntity(bookDTO);
         Book persistedBook = repository.save(entity);
         BookDTO dto = mapper.toDTO(persistedBook);
@@ -64,6 +68,9 @@ public class BookService {
     }
 
     public BookDTO update(BookDTO bookDTO) {
+
+        if (bookDTO == null) throw new RequiredObjectIsNullException();
+
         Book entity = repository.findById(bookDTO.getId())
                 .orElseThrow(() -> new ResourceNotFoundException("This resource could not be found."));
 
