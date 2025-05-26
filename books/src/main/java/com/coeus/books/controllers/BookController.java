@@ -1,7 +1,9 @@
 package com.coeus.books.controllers;
 
+import com.coeus.books.controllers.docs.BookControllerDocs;
 import com.coeus.books.models.dtos.BookDTO;
 import com.coeus.books.services.BookService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +13,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/books")
-public class BookController {
+@Tag(name = "Books", description = "Endpoints for managing books")
+public class BookController implements BookControllerDocs {
 
     @Autowired
     private BookService service;

@@ -113,13 +113,14 @@ localhost:8080/books/
 - [x] Implemented CRUD operations (`create(bookDTO)`, `findById(id)`, `findAll()`, `update(bookDTO)` and `delete(id)`)
 - [x] Added exception handling with custom error responses
 - [x] Applied the DTO pattern to manage Data Transfer Objects
-- [x] Add support for database migrations with Flyway
-- [x] Enable content negotiation (support for XML and YAML)
-- [x] Implement HATEOAS
-- [x] Write unit tests using JUnit and Mockito for the BookService class
+- [x] Added support for database migrations with Flyway
+- [x] Enabled content negotiation (support for XML and YAML)
+- [x] Implemented HATEOAS
+- [x] Written unit tests using JUnit and Mockito for the BookService class
+- [x] Documented the API with Swagger
 
 ### Next Features:
-- [ ] Document API with Swagger
 - [ ] Implement the Person endpoint
+- [ ] Remodel the database logic
 - [ ] Write integration tests with Testcontainers and REST Assured
 - [ ] Configure and enable CORS
