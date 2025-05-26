@@ -120,7 +120,15 @@ localhost:8080/books/
 - [x] Documented the API with Swagger
 
 ### Next Features:
-- [ ] Implement the Person endpoint
-- [ ] Remodel the database logic
+### **Next Features:**
+- [ ] Remodel the database
+- [ ] Implement the `Student` endpoints
+- [ ] Implement the `Employee` endpoints
 - [ ] Write integration tests with Testcontainers and REST Assured
 - [ ] Configure and enable CORS
+- [ ] Add pagination support to student listing 
+- [ ] Add JWT and Spring Security
+- [ ] Implement the logic of renting books
+- [ ] Implement warning and penalty system
+- [ ] Deploy API to cloud (Amazon AWS and Google GCP)
+- [ ] Add front-end part
