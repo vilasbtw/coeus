@@ -118,14 +118,15 @@ localhost:8080/books/
 - [x] Implemented HATEOAS
 - [x] Written unit tests using JUnit and Mockito for the BookService class
 - [x] Documented the API with Swagger
+- [x] Remodeled the database
+- [x] Implemented the `Student` endpoints
 
 ### Next Features:
 ### **Next Features:**
-- [ ] Remodel the database
-- [ ] Implement the `Student` endpoints
 - [ ] Implement the `Employee` endpoints
 - [ ] Write integration tests with Testcontainers and REST Assured
 - [ ] Configure and enable CORS
+- [ ] Update the tables so they match the modeling
 - [ ] Add pagination support to student listing 
 - [ ] Add JWT and Spring Security
 - [ ] Implement the logic of renting books
