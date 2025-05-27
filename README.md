@@ -12,6 +12,7 @@ Coeus is a RESTful API developed in Java using Spring Boot, designed to simulate
 - Postman
 - JUnit
 - Mockito
+- Swagger
 
 ## Install:
 
@@ -121,9 +122,10 @@ localhost:8080/books/
 - [x] Remodeled the database
 - [x] Implemented the `Student` endpoints
 
-### Next Features:
 ### **Next Features:**
 - [ ] Implement the `Employee` endpoints
+- [ ] Refactor ```book```package to ```api```
+- [ ] API versioning
 - [ ] Write integration tests with Testcontainers and REST Assured
 - [ ] Configure and enable CORS
 - [ ] Update the tables so they match the modeling
@@ -133,3 +135,4 @@ localhost:8080/books/
 - [ ] Implement warning and penalty system
 - [ ] Deploy API to cloud (Amazon AWS and Google GCP)
 - [ ] Add front-end part
+- [ ] Add MIT license
