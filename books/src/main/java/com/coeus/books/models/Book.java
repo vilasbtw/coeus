@@ -24,8 +24,10 @@ public class Book {
     @Column(name = "number_of_pages", nullable = false)
     private int numberOfPages;
 
+    @Column(nullable = false)
     private String genre;
 
+    @Column(nullable = false)
     private double price;
 
     public Book() {}

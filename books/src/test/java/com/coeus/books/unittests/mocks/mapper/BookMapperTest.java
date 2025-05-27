@@ -12,7 +12,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class MapperTest {
+public class BookMapperTest {
 
     MockBook mocker;
     BookMapper mapper;
