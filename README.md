@@ -121,10 +121,9 @@ localhost:8080/books/
 - [x] Documented the API with Swagger
 - [x] Remodeled the database
 - [x] Implemented the `Student` endpoints
+- [x] Implemented the `Employee` endpoints
 
 ### **Next Features:**
-- [ ] Implement the `Employee` endpoints
-- [ ] Refactor ```book```package to ```api```
 - [ ] API versioning
 - [ ] Write integration tests with Testcontainers and REST Assured
 - [ ] Configure and enable CORS
