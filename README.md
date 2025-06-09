@@ -1,5 +1,5 @@
 # Coeus
-Coeus is a RESTful API developed in Java using Spring Boot, designed to simulate the backend of a fictional academic library system. The main goal of this project is to explore best practices with Spring Boot for building well-structured RESTful APIs.
+Coeus is a web application designed to manage books within a library system, enabling efficient control of book loans. This RESTful API is being developed in Java using Spring Boot.
 
 ## Technologies Used:
 
@@ -7,21 +7,21 @@ Coeus is a RESTful API developed in Java using Spring Boot, designed to simulate
 - Spring Boot
 - Maven
 - MySQL
-- Lombok
 - MapStruct
 - Postman
 - JUnit
 - Mockito
 - Swagger
+- Testcontainers
 
 ## Install:
 
-### Prerequisites:
+### 0. Prerequisites:
 In order to use the API, make sure you have the following programs installed:
 - Java 17+
 - MySQL
 - Maven
-- Postman (recommended)
+- Postman (recommended for managing HTTP requests)
 
 ### 1. Clone this repo
 
@@ -54,13 +54,13 @@ Run `CoeusApplication.java`
 ### 5. Test the requests
 To verify that the application is correctly managing data, you can use tools like Postman to send HTTP requests. Below are examples of common operations:
 
-- **Find a book by id:**
+- **Find a book by id:**  
 **GET**
 ```bash
 localhost:8080/books/1
 ```
 
-- **Insert a new book:**
+- **Insert a new book:**  
 **POST**
 ```bash
 localhost:8080/books
@@ -76,36 +76,48 @@ localhost:8080/books
 }
 ```
 
-**Update a book info:**
+**Update a book info:**  
 **PUT**
 ```bash
 localhost:8080/books
 ```
 ```json
 {
-   "id": 2,		
-   "bookName": "The Stranger",
-   "authorName": "Albert Camus",
-   "publisherName": "Vintage",
-   "numberOfPages": 150,
-   "genre": "Philosophy",
-   "price": 10.0
+   "id": 1,
+   "bookName": "The Brothers Karamazov",
+   "authorName": "Fyodor Dostoevsky",
+   "publisherName": "Penguin Classics",
+   "numberOfPages": 796,
+   "genre": "Detective novel",
+   "price": 30.0
 }
 ```
 
-**Delete a book:**
+**Delete a book:**  
 **DELETE**
 ```bash
-localhost:8080/books/1
+localhost:8080/books/2
 ```
 
-**Retrieve all the books:**
+**Retrieve all the books:**  
 **GET**
 ```bash
 localhost:8080/books/
 ```
 
 ## To-do:
+
+### Next Features:
+- [ ] Configure and enable CORS
+- [ ] Update the tables so they match the modeling
+- [ ] Add pagination support to student listing 
+- [ ] Add JWT and Spring Security
+- [ ] Write integration tests with Testcontainers and REST Assured
+- [ ] Implement the logic of renting books
+- [ ] Implement warning and penalty system
+- [ ] Add front-end part
+- [ ] Deploy API to cloud
+- [ ] Add MIT license
 
 ### Completed:
 - [x] Created `Book` entity
@@ -122,16 +134,3 @@ localhost:8080/books/
 - [x] Remodeled the database
 - [x] Implemented the `Student` endpoints
 - [x] Implemented the `Employee` endpoints
-
-### **Next Features:**
-- [ ] API versioning
-- [ ] Write integration tests with Testcontainers and REST Assured
-- [ ] Configure and enable CORS
-- [ ] Update the tables so they match the modeling
-- [ ] Add pagination support to student listing 
-- [ ] Add JWT and Spring Security
-- [ ] Implement the logic of renting books
-- [ ] Implement warning and penalty system
-- [ ] Deploy API to cloud (Amazon AWS and Google GCP)
-- [ ] Add front-end part
-- [ ] Add MIT license
