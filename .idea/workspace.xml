@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f0b0d76f-3962-4f49-841e-77f001e9ccb1" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/swagger/SwaggerIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/swagger/SwaggerIntegrationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/testcontainers/AbstractIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/testcontainers/AbstractIntegrationTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,27 +44,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.CoeusApplication.executor": "Run",
-    "JUnit.All in books.executor": "Run",
-    "JUnit.SwaggerIntegrationTest.executor": "Run",
-    "JUnit.java in books.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "integrationtests",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Kaique/Documents/Code/coeus/books/src/test/resources",
-    "settings.editor.selected.configurable": "Docker"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.CoeusApplication.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.All in books.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SwaggerIntegrationTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.java in books.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;integrationtests&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Kaique/Documents/Code/coeus/books/src/test/resources&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;Docker&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Kaique\Documents\Code\coeus\books\src\test\resources" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.All in books">
+  <component name="RunManager" selected="Application.CoeusApplication">
     <configuration name="CoeusApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.coeus.api.CoeusApplication" />
       <module name="books" />
@@ -114,8 +111,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.All in books" />
         <item itemvalue="Application.CoeusApplication" />
+        <item itemvalue="JUnit.All in books" />
         <item itemvalue="JUnit.java in books" />
         <item itemvalue="JUnit.SwaggerIntegrationTest" />
       </list>
