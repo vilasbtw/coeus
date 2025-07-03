@@ -5,15 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f0b0d76f-3962-4f49-841e-77f001e9ccb1" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/config/TestConfigs.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/swagger/SwaggerIntegrationTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/testcontainers/AbstractIntegrationTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/books/src/test/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/config/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/config/WebConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/books.iml" beforeDir="false" afterPath="$PROJECT_DIR$/books/books.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -42,14 +53,21 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.CoeusApplication.executor": "Run",
+    "JUnit.All in books.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "cors",
-    "kotlin-language-version-configured": "true"
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Kaique/Documents/Code/coeus/books/src/test/resources"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Kaique\Documents\Code\coeus\books\src\test\resources" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.CoeusApplication">
     <configuration name="CoeusApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.coeus.api.CoeusApplication" />
       <module name="books" />
@@ -63,8 +81,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="All in books" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="books" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.All in books" />
         <item itemvalue="Application.CoeusApplication" />
       </list>
     </recent_temporary>
