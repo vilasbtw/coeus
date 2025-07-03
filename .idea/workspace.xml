@@ -5,13 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f0b0d76f-3962-4f49-841e-77f001e9ccb1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/config/TestConfigs.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/swagger/SwaggerIntegrationTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/testcontainers/AbstractIntegrationTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/books/src/test/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/books.iml" beforeDir="false" afterPath="$PROJECT_DIR$/books/books.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/swagger/SwaggerIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/swagger/SwaggerIntegrationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/testcontainers/AbstractIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/testcontainers/AbstractIntegrationTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,12 +51,15 @@
   "keyToString": {
     "Application.CoeusApplication.executor": "Run",
     "JUnit.All in books.executor": "Run",
+    "JUnit.SwaggerIntegrationTest.executor": "Run",
+    "JUnit.java in books.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "integrationtests",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Kaique/Documents/Code/coeus/books/src/test/resources"
+    "last_opened_file_path": "C:/Users/Kaique/Documents/Code/coeus/books/src/test/resources",
+    "settings.editor.selected.configurable": "Docker"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -67,7 +67,7 @@
       <recent name="C:\Users\Kaique\Documents\Code\coeus\books\src\test\resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.CoeusApplication">
+  <component name="RunManager" selected="JUnit.All in books">
     <configuration name="CoeusApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.coeus.api.CoeusApplication" />
       <module name="books" />
@@ -89,10 +89,35 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="SwaggerIntegrationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="books" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.coeus.api.integrationtests.swagger.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.coeus.api.integrationtests.swagger" />
+      <option name="MAIN_CLASS_NAME" value="com.coeus.api.integrationtests.swagger.SwaggerIntegrationTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="java in books" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="books" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/books/src/test/java" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.All in books" />
         <item itemvalue="Application.CoeusApplication" />
+        <item itemvalue="JUnit.java in books" />
+        <item itemvalue="JUnit.SwaggerIntegrationTest" />
       </list>
     </recent_temporary>
   </component>

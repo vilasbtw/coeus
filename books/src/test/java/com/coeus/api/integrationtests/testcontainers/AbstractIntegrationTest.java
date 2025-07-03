@@ -22,13 +22,21 @@ public class AbstractIntegrationTest {
     // which can compromise the performance.
     */
     static class Initializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
-        static MySQLContainer<?> mysql = new MySQLContainer<>("mysql:9.3.0");
+        static MySQLContainer<?> mysql = new MySQLContainer<>("mysql:9.1.0");
 
         // startContainter() will use the MySQLContainer **DEFAULT** database name, username and password.
         // the only parameter we'll specify is the MySQL version via constructor.
         private static void startContainers() {
             // starts containers in parallel and blocks until they are fully initialized.
             Startables.deepStart(Stream.of(mysql)).join();
+        }
+
+        private static Map<String, String> createConnectionConfiguration() {
+            return Map.of(
+                    "spring.datasource.url", mysql.getJdbcUrl(),
+                    "spring.datasource.username", mysql.getUsername(),
+                    "spring.datasource.password", mysql.getPassword()
+            );
         }
 
         @Override
@@ -39,18 +47,10 @@ public class AbstractIntegrationTest {
             ConfigurableEnvironment environment = applicationContext.getEnvironment();
 
             // injects properties (url, username, password) into the Spring environment.
-            MapPropertySource testcontainers = new MapPropertySource(
-              "testcontainers",
+            MapPropertySource testcontainers = new MapPropertySource("testcontainers",
                     (Map) createConnectionConfiguration());
             environment.getPropertySources().addFirst(testcontainers);
         }
 
-        private static Map<String, String> createConnectionConfiguration() {
-            return Map.of(
-                    "spring.datasource.url", mysql.getJdbcUrl(),
-                    "spring.datasource.username", mysql.getUsername(),
-                    "spring.datasource.password", mysql.getPassword()
-            );
-        }
     }
 }
