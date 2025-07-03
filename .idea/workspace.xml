@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f0b0d76f-3962-4f49-841e-77f001e9ccb1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/withjson/StudentControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/dto/StudentDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/config/TestConfigs.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/config/TestConfigs.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +20,7 @@
       <list>
         <option value="Interface" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -47,12 +51,15 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.CoeusApplication.executor": "Run",
+    "JUnit.All in books (1).executor": "Run",
     "JUnit.All in books.executor": "Run",
     "JUnit.SwaggerIntegrationTest.executor": "Run",
     "JUnit.java in books.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Kaique/Documents/Code/coeus/books/src/test/resources",
@@ -63,8 +70,17 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Kaique\Documents\Code\coeus\books\src\test\resources" />
     </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.coeus.api.integrationtests.controllers.withjson" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.coeus.api.integrationtests.dto" />
+    </key>
   </component>
-  <component name="RunManager" selected="JUnit.All in books">
+  <component name="RunManager" selected="JUnit.All in books (1)">
     <configuration name="CoeusApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.coeus.api.CoeusApplication" />
       <module name="books" />
@@ -74,6 +90,14 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="All in books (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="books" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -111,8 +135,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.All in books" />
+        <item itemvalue="JUnit.All in books (1)" />
         <item itemvalue="Application.CoeusApplication" />
+        <item itemvalue="JUnit.All in books" />
         <item itemvalue="JUnit.java in books" />
         <item itemvalue="JUnit.SwaggerIntegrationTest" />
       </list>
