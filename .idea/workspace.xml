@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f0b0d76f-3962-4f49-841e-77f001e9ccb1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/withjson/StudentControllerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/dto/StudentDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/config/TestConfigs.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/config/TestConfigs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/withjson/StudentControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/withjson/StudentControllerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

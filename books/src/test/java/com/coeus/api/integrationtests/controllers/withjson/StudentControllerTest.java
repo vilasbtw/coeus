@@ -27,8 +27,8 @@ class StudentControllerTest extends AbstractIntegrationTest {
     private static ObjectMapper objectMapper;
     private static StudentDTO studentDTO;
 
-    @BeforeEach
-    void setUp() {
+    @BeforeAll
+    static void setUp() {
         objectMapper = new ObjectMapper();
         // ignores HATEOAS links.
         objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
@@ -80,19 +80,101 @@ class StudentControllerTest extends AbstractIntegrationTest {
     }
 
     @Test
-    void findById() {
+    @Order(2)
+    void createWithWrongOrigin() throws JsonProcessingException {
+        mockStudent();
+
+        specification = new RequestSpecBuilder()
+                .addHeader(TestConfigs.HEADER_PARAM_ORIGIN, TestConfigs.UNATHOURIZED_ORIGIN)
+                .setBasePath("/students")
+                .setPort(TestConfigs.SERVER_PORT)
+                .addFilter(new RequestLoggingFilter(LogDetail.ALL))
+                .addFilter(new ResponseLoggingFilter(LogDetail.ALL))
+                .build();
+
+        var content = given(specification)
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .body(studentDTO)
+                .when()
+                .post()
+                .then()
+                .statusCode(403)
+                .extract()
+                .body()
+                .asString();
+
+        assertEquals("Invalid CORS request", content);
     }
 
     @Test
-    void findAll() {
+    @Order(3)
+    void findById() throws JsonProcessingException {
+        mockStudent();
+
+        specification = new RequestSpecBuilder()
+                .addHeader(TestConfigs.HEADER_PARAM_ORIGIN, TestConfigs.LOCALHOST_ORIGIN)
+                .setBasePath("/students")
+                .setPort(TestConfigs.SERVER_PORT)
+                .addFilter(new RequestLoggingFilter(LogDetail.ALL))
+                .addFilter(new ResponseLoggingFilter(LogDetail.ALL))
+                .build();
+
+        var content = given(specification)
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .pathParam("id", studentDTO.getId())
+                .when()
+                .get("{id}")
+                .then()
+                .statusCode(200)
+                .extract()
+                .body()
+                .asString();
+
+        // rest-assured uses its own object mapper for serialization, which may cause problems.
+        // to avoid that, we are deserializing the response manually.
+        StudentDTO createdDTO = objectMapper.readValue(content, StudentDTO.class);
+        studentDTO = createdDTO;
+
+        assertNotNull(createdDTO.getId());
+        assertNotNull(createdDTO.getStudentRegister());
+        assertNotNull(createdDTO.getName());
+        assertNotNull(createdDTO.getEmail());
+        assertNotNull(createdDTO.getCourse());
+
+        assertTrue(createdDTO.getId() > 0);
+
+        assertEquals("HT3036901", createdDTO.getStudentRegister());
+        assertEquals("Kaique", createdDTO.getName());
+        assertEquals("kaique@gmail.com", createdDTO.getEmail());
+        assertEquals("System Development And Analysis", createdDTO.getCourse());
     }
 
     @Test
-    void update() {
-    }
+    @Order(4)
+    void findByIdWithWrongOrigin() throws JsonProcessingException {
+        mockStudent();
 
-    @Test
-    void delete() {
+        specification = new RequestSpecBuilder()
+                .addHeader(TestConfigs.HEADER_PARAM_ORIGIN, TestConfigs.UNATHOURIZED_ORIGIN)
+                .setBasePath("/students")
+                .setPort(TestConfigs.SERVER_PORT)
+                .addFilter(new RequestLoggingFilter(LogDetail.ALL))
+                .addFilter(new ResponseLoggingFilter(LogDetail.ALL))
+                .build();
+
+        var content = given(specification)
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .pathParam("id", studentDTO.getId())
+                .when()
+                .get("{id}")
+                .then()
+                .statusCode(403)
+                .extract()
+                .body()
+                .asString();
+
+        assertEquals("Invalid CORS request", content);
+
     }
 
     private void mockStudent() {

@@ -10,5 +10,6 @@ public interface TestConfigs {
 
     String AUTHORIZED_ORIGIN = "http://localhost:3000";
     String UNATHOURIZED_ORIGIN = "http://localhost:1234";
+    String LOCALHOST_ORIGIN = "http://localhost:8080";
 
 }
