@@ -7,6 +7,7 @@ import com.coeus.api.models.Student;
 import com.coeus.api.models.dtos.StudentDTO;
 import com.coeus.api.models.mapper.StudentMapper;
 import com.coeus.api.repositories.StudentRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -80,6 +81,21 @@ public class StudentService {
         return dto;
     }
 
+    // this method is not provided by JPA.
+    // so we must add @Transation to ensure ACID is being followed.
+    @Transactional
+    public StudentDTO disableStudent(Long id) {
+        repository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("This resource could not be found."));
+
+        repository.disableStudent(id);
+
+        Student entity = repository.findById(id).get();
+        StudentDTO dto = mapper.toDTO(entity);
+        addHateoasLinks(dto);
+        return dto;
+    }
+
     public void delete(Long id) {
         Student entity = repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("This resource could not be found."));
@@ -92,6 +108,7 @@ public class StudentService {
         studentDTO.add(linkTo(methodOn(StudentController.class).findById(studentDTO.getId())).withSelfRel().withType("GET"));
         studentDTO.add(linkTo(methodOn(StudentController.class).findAll()).withRel("findAll").withType("GET"));
         studentDTO.add(linkTo(methodOn(StudentController.class).update(studentDTO)).withRel("update").withType("PUT"));
+        studentDTO.add(linkTo(methodOn(StudentController.class).disableStudent(studentDTO)).withRel("disable").withType("PATCH"));
         studentDTO.add(linkTo(methodOn(StudentController.class).delete(studentDTO.getId())).withRel("delete").withType("DELETE"));
     }
 }

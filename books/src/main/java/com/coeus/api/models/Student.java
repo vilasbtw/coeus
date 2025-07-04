@@ -24,6 +24,9 @@ public class Student {
     @Column(nullable = false)
     private String course;
 
+    @Column(nullable = false)
+    private boolean enabled;
+
     public Student() {}
 
     public Long getId() {
@@ -66,15 +69,23 @@ public class Student {
         this.course = course;
     }
 
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Student student = (Student) o;
-        return Objects.equals(id, student.id) && Objects.equals(studentRegister, student.studentRegister) && Objects.equals(name, student.name) && Objects.equals(email, student.email) && Objects.equals(course, student.course);
+        return enabled == student.enabled && Objects.equals(id, student.id) && Objects.equals(studentRegister, student.studentRegister) && Objects.equals(name, student.name) && Objects.equals(email, student.email) && Objects.equals(course, student.course);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, studentRegister, name, email, course);
+        return Objects.hash(id, studentRegister, name, email, course, enabled);
     }
 }

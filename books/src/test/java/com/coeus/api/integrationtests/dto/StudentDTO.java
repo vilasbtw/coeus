@@ -9,6 +9,7 @@ public class StudentDTO {
     private String name;
     private String email;
     private String course;
+    private boolean enabled;
 
     public StudentDTO() {}
 
@@ -52,16 +53,23 @@ public class StudentDTO {
         this.course = course;
     }
 
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
         StudentDTO that = (StudentDTO) o;
-        return Objects.equals(id, that.id) && Objects.equals(studentRegister, that.studentRegister) && Objects.equals(name, that.name) && Objects.equals(email, that.email) && Objects.equals(course, that.course);
+        return enabled == that.enabled && Objects.equals(id, that.id) && Objects.equals(studentRegister, that.studentRegister) && Objects.equals(name, that.name) && Objects.equals(email, that.email) && Objects.equals(course, that.course);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), id, studentRegister, name, email, course);
+        return Objects.hash(id, studentRegister, name, email, course, enabled);
     }
 }

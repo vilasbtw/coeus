@@ -11,6 +11,7 @@ public class StudentDTO extends RepresentationModel<StudentDTO> {
     private String name;
     private String email;
     private String course;
+    private Boolean enabled;
 
     public StudentDTO() {}
 
@@ -54,16 +55,24 @@ public class StudentDTO extends RepresentationModel<StudentDTO> {
         this.course = course;
     }
 
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         StudentDTO that = (StudentDTO) o;
-        return Objects.equals(id, that.id) && Objects.equals(studentRegister, that.studentRegister) && Objects.equals(name, that.name) && Objects.equals(email, that.email) && Objects.equals(course, that.course);
+        return Objects.equals(id, that.id) && Objects.equals(studentRegister, that.studentRegister) && Objects.equals(name, that.name) && Objects.equals(email, that.email) && Objects.equals(course, that.course) && Objects.equals(enabled, that.enabled);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), id, studentRegister, name, email, course);
+        return Objects.hash(super.hashCode(), id, studentRegister, name, email, course, enabled);
     }
 }
