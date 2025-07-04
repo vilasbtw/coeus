@@ -1003,6 +1003,218 @@
 							"body": ""
 						}
 					]
+				},
+				{
+					"name": "Disables a student",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/students/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"students",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "52581808",
+									"description": "(Required) "
+								}
+							]
+						},
+						"description": "Deletes a student by its id."
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/students/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"students",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "52581808",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"id\": -36666014,\n  \"studentRegister\": \"laboris\",\n  \"name\": \"dolor\",\n  \"email\": \"Duis nisi\",\n  \"course\": \"ad\",\n  \"_links\": {\n    \"Lorem_1\": {\n      \"href\": \"ut qui dolor cupidatat minim\",\n      \"hreflang\": \"enim exercitation adipis\",\n      \"title\": \"labore sed\",\n      \"type\": \"dolore laborum proident\",\n      \"deprecation\": \"dolore ipsum\",\n      \"profile\": \"sed ipsum incididunt\",\n      \"name\": \"cillum\",\n      \"templated\": false\n    }\n  }\n}"
+						},
+						{
+							"name": "No Content",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/students/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"students",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "52581808",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/students/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"students",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "52581808",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Unauthorized",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/students/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"students",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "52581808",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Internal Server Error",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/students/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"students",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "52581808",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
 				}
 			]
 		},

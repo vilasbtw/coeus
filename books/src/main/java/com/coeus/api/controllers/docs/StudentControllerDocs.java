@@ -90,6 +90,24 @@ public interface StudentControllerDocs {
     StudentDTO update(@RequestBody StudentDTO studentDTO);
 
     @Operation(
+            summary = "Disables a student",
+            description = "Disables a specific student by its id",
+            tags = "Students",
+            responses = {
+                    @ApiResponse(
+                            description = "Success",
+                            responseCode = "200",
+                            content = @Content(schema = @Schema(implementation = StudentDTO.class))
+                    ),
+                    @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
+                    @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
+                    @ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
+                    @ApiResponse(description = "Internal Server Error", responseCode = "500", content = @Content)
+            }
+    )
+    StudentDTO disableStudent(@PathVariable(value = "id") Long id);
+
+    @Operation(
             summary = "Deletes a student",
             description = "Deletes a student by its id.",
             tags = "Students",

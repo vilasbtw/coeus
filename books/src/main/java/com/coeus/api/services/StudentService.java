@@ -108,7 +108,7 @@ public class StudentService {
         studentDTO.add(linkTo(methodOn(StudentController.class).findById(studentDTO.getId())).withSelfRel().withType("GET"));
         studentDTO.add(linkTo(methodOn(StudentController.class).findAll()).withRel("findAll").withType("GET"));
         studentDTO.add(linkTo(methodOn(StudentController.class).update(studentDTO)).withRel("update").withType("PUT"));
-        studentDTO.add(linkTo(methodOn(StudentController.class).disableStudent(studentDTO)).withRel("disable").withType("PATCH"));
+        studentDTO.add(linkTo(methodOn(StudentController.class).disableStudent(studentDTO.getId())).withRel("disable").withType("PATCH"));
         studentDTO.add(linkTo(methodOn(StudentController.class).delete(studentDTO.getId())).withRel("delete").withType("DELETE"));
     }
 }

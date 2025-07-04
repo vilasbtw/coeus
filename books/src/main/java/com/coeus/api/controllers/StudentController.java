@@ -41,6 +41,12 @@ public class StudentController implements StudentControllerDocs {
         return service.update(studentDTO);
     }
 
+    @PatchMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE})
+    @Override
+    public StudentDTO disableStudent(@PathVariable(value = "id") Long id) {
+        return service.disableStudent(id);
+    }
+
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<?> delete(@PathVariable(value = "id") Long id) {
         service.delete(id);
