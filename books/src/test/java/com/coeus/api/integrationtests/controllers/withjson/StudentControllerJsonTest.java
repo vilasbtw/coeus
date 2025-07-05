@@ -17,8 +17,7 @@ import org.springframework.http.MediaType;
 
 import static io.restassured.RestAssured.given;
 import static junit.framework.TestCase.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -138,6 +137,49 @@ class StudentControllerJsonTest extends AbstractIntegrationTest {
         assertEquals("Linus@gmail.com", createdDTO.getEmail());
         assertEquals("Computer Science", createdDTO.getCourse());
         assertTrue(studentDTO.getEnabled());
+    }
+
+    @Test
+    @Order(4)
+    void disable() throws JsonProcessingException {
+        mockStudent();
+
+        var content = given(specification)
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .pathParam("id", studentDTO.getId())
+                .when()
+                .patch("{id}")
+                .then()
+                .statusCode(200)
+                .extract()
+                .body()
+                .asString();
+
+        // rest-assured uses its own object mapper for serialization, which may cause problems.
+        // to avoid that, we are deserializing the response manually.
+        StudentDTO createdDTO = objectMapper.readValue(content, StudentDTO.class);
+        studentDTO = createdDTO;
+
+        assertNotNull(createdDTO.getId());
+        assertTrue(createdDTO.getId() > 0);
+
+        assertEquals("HT3035502", createdDTO.getStudentRegister());
+        assertEquals("Linus Benedict Torvalds", createdDTO.getName());
+        assertEquals("Linus@gmail.com", createdDTO.getEmail());
+        assertEquals("Computer Science", createdDTO.getCourse());
+        assertFalse(studentDTO.getEnabled());
+    }
+
+    @Test
+    @Order(5)
+    void delete() throws JsonProcessingException {
+
+        given(specification)
+                .pathParam("id", studentDTO.getId())
+                .when()
+                .delete("{id}")
+                .then()
+                .statusCode(204);
     }
 
     private void mockStudent() {
