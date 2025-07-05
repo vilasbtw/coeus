@@ -25,7 +25,7 @@ public class Student {
     private String course;
 
     @Column(nullable = false)
-    private boolean enabled;
+    private boolean enabled = true;
 
     public Student() {}
 

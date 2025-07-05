@@ -1,4 +1,4 @@
-package com.coeus.api.integrationtests.controllers.withjson;
+package com.coeus.api.integrationtests.controllers.cors.withjson;
 
 import com.coeus.api.config.TestConfigs;
 import com.coeus.api.integrationtests.dto.StudentDTO;
@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-class StudentControllerTest extends AbstractIntegrationTest {
+class StudentControllerCorsTest extends AbstractIntegrationTest {
 
     private static RequestSpecification specification;
     private static ObjectMapper objectMapper;
@@ -77,6 +77,7 @@ class StudentControllerTest extends AbstractIntegrationTest {
         assertEquals("Kaique", createdDTO.getName());
         assertEquals("kaique@gmail.com", createdDTO.getEmail());
         assertEquals("System Development And Analysis", createdDTO.getCourse());
+        assertTrue(studentDTO.getEnabled());
     }
 
     @Test
@@ -147,6 +148,7 @@ class StudentControllerTest extends AbstractIntegrationTest {
         assertEquals("Kaique", createdDTO.getName());
         assertEquals("kaique@gmail.com", createdDTO.getEmail());
         assertEquals("System Development And Analysis", createdDTO.getCourse());
+        assertTrue(studentDTO.getEnabled());
     }
 
     @Test

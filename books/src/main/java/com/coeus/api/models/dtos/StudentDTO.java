@@ -11,7 +11,7 @@ public class StudentDTO extends RepresentationModel<StudentDTO> {
     private String name;
     private String email;
     private String course;
-    private Boolean enabled;
+    private boolean enabled = true;
 
     public StudentDTO() {}
 

@@ -9,7 +9,7 @@ public class StudentDTO {
     private String name;
     private String email;
     private String course;
-    private boolean enabled;
+    private boolean enabled = true;
 
     public StudentDTO() {}
 
@@ -53,11 +53,11 @@ public class StudentDTO {
         this.course = course;
     }
 
-    public boolean isEnabled() {
+    public Boolean getEnabled() {
         return enabled;
     }
 
-    public void setEnabled(boolean enabled) {
+    public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
 
