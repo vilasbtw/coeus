@@ -4,6 +4,7 @@ import com.coeus.api.config.TestConfigs;
 import com.coeus.api.integrationtests.dto.StudentDTO;
 import com.coeus.api.integrationtests.testcontainers.AbstractIntegrationTest;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.builder.RequestSpecBuilder;
@@ -14,6 +15,8 @@ import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.*;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+
+import java.util.List;
 
 import static io.restassured.RestAssured.given;
 import static junit.framework.TestCase.assertTrue;
@@ -111,7 +114,7 @@ class StudentControllerJsonTest extends AbstractIntegrationTest {
     @Test
     @Order(3)
     void findById() throws JsonProcessingException {
-        mockStudent();
+        // mockStudent();
 
         var content = given(specification)
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
@@ -180,6 +183,47 @@ class StudentControllerJsonTest extends AbstractIntegrationTest {
                 .delete("{id}")
                 .then()
                 .statusCode(204);
+    }
+
+    @Test
+    @Order(6)
+    void findAll() throws JsonProcessingException {
+
+        var content = given(specification)
+                .accept(MediaType.APPLICATION_JSON_VALUE)
+                .when()
+                .get()
+                .then()
+                .statusCode(200)
+                .extract()
+                .body()
+                .asString();
+
+        List<StudentDTO> students = objectMapper.readValue(content, new TypeReference<List<StudentDTO>>() {});
+
+        // rest-assured uses its own object mapper for serialization, which may cause problems.
+        // to avoid that, we are deserializing the response manually.
+        StudentDTO StudentOne = students.get(0);
+
+        assertNotNull(StudentOne.getId());
+        assertTrue(StudentOne.getId() > 0);
+
+        assertEquals("2023001", StudentOne.getStudentRegister());
+        assertEquals("Alice Martins Silva", StudentOne.getName());
+        assertEquals("alice.silva@example.com", StudentOne.getEmail());
+        assertEquals("Computer Science", StudentOne.getCourse());
+        assertTrue(StudentOne.getEnabled());
+
+        StudentDTO studentTwo = students.get(2);
+
+        assertNotNull(studentTwo.getId());
+        assertTrue(studentTwo.getId() > 0);
+
+        assertEquals("2023003", studentTwo.getStudentRegister());
+        assertEquals("Carla Souza Andrade", studentTwo.getName());
+        assertEquals("carla.andrade@example.com", studentTwo.getEmail());
+        assertEquals("Business Administration", studentTwo.getCourse());
+        assertTrue(studentTwo.getEnabled());
     }
 
     private void mockStudent() {
