@@ -208,10 +208,10 @@ class StudentControllerJsonTest extends AbstractIntegrationTest {
         assertNotNull(StudentOne.getId());
         assertTrue(StudentOne.getId() > 0);
 
-        assertEquals("2023001", StudentOne.getStudentRegister());
-        assertEquals("Alice Martins Silva", StudentOne.getName());
-        assertEquals("alice.silva@example.com", StudentOne.getEmail());
-        assertEquals("Computer Science", StudentOne.getCourse());
+        assertEquals("HT3039610", StudentOne.getStudentRegister());
+        assertEquals("Kaique Vilas Boa", StudentOne.getName());
+        assertEquals("kaiquevilas@gmail.com", StudentOne.getEmail());
+        assertEquals("System Analysis And Development", StudentOne.getCourse());
         assertTrue(StudentOne.getEnabled());
 
         StudentDTO studentTwo = students.get(2);
@@ -219,9 +219,9 @@ class StudentControllerJsonTest extends AbstractIntegrationTest {
         assertNotNull(studentTwo.getId());
         assertTrue(studentTwo.getId() > 0);
 
-        assertEquals("2023003", studentTwo.getStudentRegister());
-        assertEquals("Carla Souza Andrade", studentTwo.getName());
-        assertEquals("carla.andrade@example.com", studentTwo.getEmail());
+        assertEquals("HT3087683", studentTwo.getStudentRegister());
+        assertEquals("Luiz Carlos Leão Duarte", studentTwo.getName());
+        assertEquals("chmpgn@outlook.com", studentTwo.getEmail());
         assertEquals("Business Administration", studentTwo.getCourse());
         assertTrue(studentTwo.getEnabled());
     }
