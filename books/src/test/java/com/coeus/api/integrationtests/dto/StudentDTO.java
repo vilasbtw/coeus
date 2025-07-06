@@ -1,7 +1,10 @@
 package com.coeus.api.integrationtests.dto;
 
+import jakarta.xml.bind.annotation.XmlRootElement;
+
 import java.util.Objects;
 
+@XmlRootElement
 public class StudentDTO {
 
     private Long id;

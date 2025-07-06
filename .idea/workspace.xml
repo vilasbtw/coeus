@@ -5,9 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f0b0d76f-3962-4f49-841e-77f001e9ccb1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/withxml/StudentControllerXmlTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/withyaml/StudentControllerYamlTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/withyaml/mapper/YAMLMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/src/main/resources/db/migration/V4__Populate_Table_Student.sql" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/main/resources/db/migration/V4__Populate_Table_Student.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/withjson/StudentControllerJsonTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/withjson/StudentControllerJsonTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/dto/StudentDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/dto/StudentDTO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,8 +21,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -66,6 +69,9 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.coeus.api.integrationtests.controllers.withyaml.mapper" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Kaique\Documents\Code\coeus\books\src\test\resources" />
     </key>
@@ -79,6 +85,9 @@
       <recent name="com.coeus.api.integrationtests.controllers.withjson" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.coeus.api.integrationtests.controllers.withyaml" />
+      <recent name="com.coeus.api.integrationtests.controllers.withxml" />
+      <recent name="com.coeus.api.integrationtests.controllers.cors.withxml" />
       <recent name="com.coeus.api.integrationtests.controllers.withjson" />
       <recent name="com.coeus.api.integrationtests.dto" />
     </key>

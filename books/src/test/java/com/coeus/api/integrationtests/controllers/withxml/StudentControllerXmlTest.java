@@ -1,4 +1,4 @@
-package com.coeus.api.integrationtests.controllers.withjson;
+package com.coeus.api.integrationtests.controllers.withxml;
 
 import com.coeus.api.config.TestConfigs;
 import com.coeus.api.integrationtests.dto.StudentDTO;
@@ -7,6 +7,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.LogDetail;
 import io.restassured.filter.log.RequestLoggingFilter;
@@ -24,16 +25,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-class StudentControllerJsonTest extends AbstractIntegrationTest {
+class StudentControllerXmlTest extends AbstractIntegrationTest {
 
     private static RequestSpecification specification;
-    private static ObjectMapper objectMapper;
+    private static XmlMapper objectMapper;
     private static StudentDTO studentDTO;
 
     @BeforeAll
     static void setUp() {
-        objectMapper = new ObjectMapper();
-        // ignores HATEOAS links.
+        objectMapper = new XmlMapper();
         objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 
         studentDTO = new StudentDTO();
@@ -53,18 +53,18 @@ class StudentControllerJsonTest extends AbstractIntegrationTest {
                 .build();
 
         var content = given(specification)
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .contentType(MediaType.APPLICATION_XML_VALUE)
+                .accept(MediaType.APPLICATION_XML_VALUE)
                 .body(studentDTO)
                 .when()
                 .post()
                 .then()
+                .contentType(MediaType.APPLICATION_XML_VALUE)
                 .statusCode(200)
                 .extract()
                 .body()
                 .asString();
 
-        // rest-assured uses its own object mapper for serialization, which may cause problems.
-        // to avoid that, we are deserializing the response manually.
         StudentDTO createdDTO = objectMapper.readValue(content, StudentDTO.class);
         studentDTO = createdDTO;
 
@@ -85,11 +85,13 @@ class StudentControllerJsonTest extends AbstractIntegrationTest {
         studentDTO.setName("Linus Benedict Torvalds");
 
         var content = given(specification)
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .contentType(MediaType.APPLICATION_XML_VALUE)
+                .accept(MediaType.APPLICATION_XML_VALUE)
                 .body(studentDTO)
                 .when()
                 .put()
                 .then()
+                .contentType(MediaType.APPLICATION_XML_VALUE)
                 .statusCode(200)
                 .extract()
                 .body()
@@ -115,11 +117,13 @@ class StudentControllerJsonTest extends AbstractIntegrationTest {
         // mockStudent();
 
         var content = given(specification)
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .contentType(MediaType.APPLICATION_XML_VALUE)
+                .accept(MediaType.APPLICATION_XML_VALUE)
                 .pathParam("id", studentDTO.getId())
                 .when()
                 .get("{id}")
                 .then()
+                .contentType(MediaType.APPLICATION_XML_VALUE)
                 .statusCode(200)
                 .extract()
                 .body()
@@ -144,11 +148,12 @@ class StudentControllerJsonTest extends AbstractIntegrationTest {
         mockStudent();
 
         var content = given(specification)
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .accept(MediaType.APPLICATION_XML_VALUE)
                 .pathParam("id", studentDTO.getId())
                 .when()
                 .patch("{id}")
                 .then()
+                .contentType(MediaType.APPLICATION_XML_VALUE)
                 .statusCode(200)
                 .extract()
                 .body()
@@ -184,10 +189,11 @@ class StudentControllerJsonTest extends AbstractIntegrationTest {
     void findAll() throws JsonProcessingException {
 
         var content = given(specification)
-                .accept(MediaType.APPLICATION_JSON_VALUE)
+                .accept(MediaType.APPLICATION_XML_VALUE)
                 .when()
                 .get()
                 .then()
+                .contentType(MediaType.APPLICATION_XML_VALUE)
                 .statusCode(200)
                 .extract()
                 .body()

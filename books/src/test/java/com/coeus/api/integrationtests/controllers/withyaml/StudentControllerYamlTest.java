@@ -1,21 +1,23 @@
-package com.coeus.api.integrationtests.controllers.withjson;
+package com.coeus.api.integrationtests.controllers.withyaml;
 
 import com.coeus.api.config.TestConfigs;
+import com.coeus.api.integrationtests.controllers.withyaml.mapper.YAMLMapper;
 import com.coeus.api.integrationtests.dto.StudentDTO;
 import com.coeus.api.integrationtests.testcontainers.AbstractIntegrationTest;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.config.EncoderConfig;
+import io.restassured.config.RestAssuredConfig;
 import io.restassured.filter.log.LogDetail;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
+import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.*;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
@@ -24,18 +26,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-class StudentControllerJsonTest extends AbstractIntegrationTest {
+class StudentControllerYamlTest extends AbstractIntegrationTest {
 
     private static RequestSpecification specification;
-    private static ObjectMapper objectMapper;
+    private static YAMLMapper objectMapper;
     private static StudentDTO studentDTO;
 
     @BeforeAll
     static void setUp() {
-        objectMapper = new ObjectMapper();
-        // ignores HATEOAS links.
-        objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-
+        objectMapper = new YAMLMapper();
         studentDTO = new StudentDTO();
     }
 
@@ -52,20 +51,26 @@ class StudentControllerJsonTest extends AbstractIntegrationTest {
                 .addFilter(new ResponseLoggingFilter(LogDetail.ALL))
                 .build();
 
-        var content = given(specification)
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .body(studentDTO)
+        // configuring rest-assured to treat MediaType.APPLICATION_YAML_VALUE as a plain text format
+        // ensuring the request body is sent without automatic object serialization.
+        var createdDTO = given().config(
+                        RestAssuredConfig.config().encoderConfig(
+                                EncoderConfig.encoderConfig().
+                                encodeContentTypeAs(MediaType.APPLICATION_YAML_VALUE, ContentType.TEXT))
+                )
+                .spec(specification)
+                .contentType(MediaType.APPLICATION_YAML_VALUE)
+                .accept(MediaType.APPLICATION_YAML_VALUE)
+                .body(studentDTO, objectMapper)
                 .when()
                 .post()
                 .then()
+                .contentType(MediaType.APPLICATION_YAML_VALUE)
                 .statusCode(200)
                 .extract()
                 .body()
-                .asString();
+                .as(StudentDTO.class, objectMapper);
 
-        // rest-assured uses its own object mapper for serialization, which may cause problems.
-        // to avoid that, we are deserializing the response manually.
-        StudentDTO createdDTO = objectMapper.readValue(content, StudentDTO.class);
         studentDTO = createdDTO;
 
         assertNotNull(createdDTO.getId());
@@ -84,18 +89,24 @@ class StudentControllerJsonTest extends AbstractIntegrationTest {
     void update() throws JsonProcessingException {
         studentDTO.setName("Linus Benedict Torvalds");
 
-        var content = given(specification)
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .body(studentDTO)
+        var createdDTO = given().config(
+                RestAssuredConfig.config().encoderConfig(
+                        EncoderConfig.encoderConfig().
+                        encodeContentTypeAs(MediaType.APPLICATION_YAML_VALUE, ContentType.TEXT))
+                )
+                .spec(specification)
+                .contentType(MediaType.APPLICATION_YAML_VALUE)
+                .accept(MediaType.APPLICATION_YAML_VALUE)
+                .body(studentDTO, objectMapper)
                 .when()
                 .put()
                 .then()
+                .contentType(MediaType.APPLICATION_YAML_VALUE)
                 .statusCode(200)
                 .extract()
                 .body()
-                .asString();
+                .as(StudentDTO.class, objectMapper);
 
-        StudentDTO createdDTO = objectMapper.readValue(content, StudentDTO.class);
         studentDTO = createdDTO;
 
         assertNotNull(createdDTO.getId());
@@ -112,20 +123,25 @@ class StudentControllerJsonTest extends AbstractIntegrationTest {
     @Test
     @Order(3)
     void findById() throws JsonProcessingException {
-        // mockStudent();
 
-        var content = given(specification)
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
+        var createdDTO = given().config(
+                RestAssuredConfig.config().encoderConfig(
+                        EncoderConfig.encoderConfig().
+                        encodeContentTypeAs(MediaType.APPLICATION_YAML_VALUE, ContentType.TEXT))
+                )
+                .spec(specification)
+                .contentType(MediaType.APPLICATION_YAML_VALUE)
+                .accept(MediaType.APPLICATION_YAML_VALUE)
                 .pathParam("id", studentDTO.getId())
                 .when()
                 .get("{id}")
                 .then()
+                .contentType(MediaType.APPLICATION_YAML_VALUE)
                 .statusCode(200)
                 .extract()
                 .body()
-                .asString();
+                .as(StudentDTO.class, objectMapper);
 
-        StudentDTO createdDTO = objectMapper.readValue(content, StudentDTO.class);
         studentDTO = createdDTO;
 
         assertNotNull(createdDTO.getId());
@@ -141,20 +157,24 @@ class StudentControllerJsonTest extends AbstractIntegrationTest {
     @Test
     @Order(4)
     void disable() throws JsonProcessingException {
-        mockStudent();
 
-        var content = given(specification)
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
+        var createdDTO = given().config(
+                RestAssuredConfig.config().encoderConfig(
+                        EncoderConfig.encoderConfig().
+                        encodeContentTypeAs(MediaType.APPLICATION_YAML_VALUE, ContentType.TEXT))
+                )
+                .spec(specification)
+                .accept(MediaType.APPLICATION_YAML_VALUE)
                 .pathParam("id", studentDTO.getId())
                 .when()
                 .patch("{id}")
                 .then()
+                .contentType(MediaType.APPLICATION_YAML_VALUE)
                 .statusCode(200)
                 .extract()
                 .body()
-                .asString();
+                .as(StudentDTO.class, objectMapper);
 
-        StudentDTO createdDTO = objectMapper.readValue(content, StudentDTO.class);
         studentDTO = createdDTO;
 
         assertNotNull(createdDTO.getId());
@@ -183,17 +203,18 @@ class StudentControllerJsonTest extends AbstractIntegrationTest {
     @Order(6)
     void findAll() throws JsonProcessingException {
 
-        var content = given(specification)
-                .accept(MediaType.APPLICATION_JSON_VALUE)
+        var response = given(specification)
+                .accept(MediaType.APPLICATION_YAML_VALUE)
                 .when()
                 .get()
                 .then()
+                .contentType(MediaType.APPLICATION_YAML_VALUE)
                 .statusCode(200)
                 .extract()
                 .body()
-                .asString();
+                .as(StudentDTO[].class, objectMapper);
 
-        List<StudentDTO> students = objectMapper.readValue(content, new TypeReference<List<StudentDTO>>() {});
+        List<StudentDTO> students = Arrays.asList(response);
 
         StudentDTO StudentOne = students.get(0);
 
