@@ -1,6 +1,5 @@
 package com.coeus.api.services;
 
-
 import com.coeus.api.controllers.EmployeeController;
 import com.coeus.api.exceptions.RequiredObjectIsNullException;
 import com.coeus.api.exceptions.ResourceNotFoundException;
@@ -9,10 +8,13 @@ import com.coeus.api.models.dtos.EmployeeDTO;
 import com.coeus.api.models.mapper.EmployeeMapper;
 import com.coeus.api.repositories.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PagedResourcesAssembler;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.PagedModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
@@ -22,6 +24,10 @@ public class EmployeeService {
 
     private final EmployeeRepository repository;
     private final EmployeeMapper mapper;
+
+    // converts paginated EmployeeDTOs into a response with HATEOAS links, e.g.: "next", "previous", "self", "last"...
+    @Autowired
+    PagedResourcesAssembler<EmployeeDTO> assembler;
 
     @Autowired
     public EmployeeService(EmployeeRepository repository, EmployeeMapper mapper) {
@@ -49,18 +55,25 @@ public class EmployeeService {
         return employeeDTO;
     }
 
-    public List<EmployeeDTO> findAll() {
-        List<Employee> employeesList = repository.findAll();
-        List<EmployeeDTO> dtosList = new ArrayList<>();
-
-        for (Employee employee : employeesList) {
-            dtosList.add(mapper.toDTO(employee));
-        }
-
-        for (EmployeeDTO dto : dtosList) {
+    public PagedModel<EntityModel<EmployeeDTO>> findAll(Pageable pageable) {
+        var employees = repository.findAll(pageable);
+        var pagedDTOs = employees.map(employee -> {
+            EmployeeDTO dto = mapper.toDTO(employee);
             addHateoasLinks(dto);
-        }
-        return dtosList;
+            return dto;
+        });
+
+        // adding HATEOAS "self" links for the current page requested by the client.
+        Link findAllLink = WebMvcLinkBuilder.linkTo(
+            WebMvcLinkBuilder.methodOn(EmployeeController.class)
+                .findAll(
+                    pageable.getPageNumber(),
+                    pageable.getPageSize(),
+                    String.valueOf(pageable.getSort())
+                )
+        ).withSelfRel();
+
+        return assembler.toModel(pagedDTOs, findAllLink);
     }
 
     public EmployeeDTO update(EmployeeDTO employeeDTO) {
@@ -90,7 +103,7 @@ public class EmployeeService {
     private static void addHateoasLinks(EmployeeDTO employeeDTO) {
         employeeDTO.add(linkTo(methodOn(EmployeeController.class).create(employeeDTO)).withRel("create").withType("POST"));
         employeeDTO.add(linkTo(methodOn(EmployeeController.class).findById(employeeDTO.getId())).withSelfRel().withType("GET"));
-        employeeDTO.add(linkTo(methodOn(EmployeeController.class).findAll()).withRel("findAll").withType("GET"));
+        employeeDTO.add(linkTo(methodOn(EmployeeController.class).findAll(1, 12, "asc")).withRel("findAll").withType("GET"));
         employeeDTO.add(linkTo(methodOn(EmployeeController.class).update(employeeDTO)).withRel("update").withType("PUT"));
         employeeDTO.add(linkTo(methodOn(EmployeeController.class).delete(employeeDTO.getId())).withRel("delete").withType("DELETE"));
     }

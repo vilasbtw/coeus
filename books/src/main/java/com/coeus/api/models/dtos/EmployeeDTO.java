@@ -1,9 +1,12 @@
 package com.coeus.api.models.dtos;
 
 import org.springframework.hateoas.RepresentationModel;
+import org.springframework.hateoas.server.core.Relation;
 
 import java.util.Objects;
 
+// defines the name of HATEOAS collection as "employees"
+@Relation(collectionRelation = "employees")
 public class EmployeeDTO extends RepresentationModel<EmployeeDTO> {
 
     private Long id;

@@ -5,6 +5,8 @@ import org.springframework.hateoas.server.core.Relation;
 
 import java.util.Objects;
 
+// defines the name of HATEOAS collection as "books"
+@Relation(collectionRelation = "books")
 public class BookDTO extends RepresentationModel<BookDTO> {
     private Long id;
     private String bookName;
