@@ -9,10 +9,13 @@ import com.coeus.api.models.mapper.StudentMapper;
 import com.coeus.api.repositories.StudentRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PagedResourcesAssembler;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.PagedModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
@@ -22,6 +25,10 @@ public class StudentService {
 
     private final StudentRepository repository;
     private final StudentMapper mapper;
+
+    // converts paginated StudentDTOs into a response with HATEOAS links, e.g.: "next", "previous", "self", "last"...
+    @Autowired
+    PagedResourcesAssembler<StudentDTO> assembler;
 
     @Autowired
     public StudentService(StudentRepository repository, StudentMapper mapper) {
@@ -34,6 +41,7 @@ public class StudentService {
         if (studentDTO == null) throw new RequiredObjectIsNullException();
 
         Student entity = mapper.toEntity(studentDTO);
+
         Student persistedStudent = repository.save(entity);
         StudentDTO dto = mapper.toDTO(persistedStudent);
         addHateoasLinks(dto);
@@ -49,18 +57,25 @@ public class StudentService {
         return studentDTO;
     }
 
-    public List<StudentDTO> findAll() {
-        List<Student> studentsList = repository.findAll();
-        List<StudentDTO> dtosList = new ArrayList<>();
-
-        for (Student student : studentsList) {
-            dtosList.add(mapper.toDTO(student));
-        }
-
-        for (StudentDTO dto : dtosList) {
+    public PagedModel<EntityModel<StudentDTO>> findAll(Pageable pageable) {
+        var students = repository.findAll(pageable);
+        var pagedDTOs = students.map(student -> {
+            StudentDTO dto = mapper.toDTO(student);
             addHateoasLinks(dto);
-        }
-        return dtosList;
+            return dto;
+        });
+
+        // adding HATEOAS "self" links for the current page requested by the client.
+        Link findAllLink = WebMvcLinkBuilder.linkTo(
+            WebMvcLinkBuilder.methodOn(StudentController.class)
+                .findAll(
+                    pageable.getPageNumber(),
+                    pageable.getPageSize(),
+                    String.valueOf(pageable.getSort())
+                )
+        ).withSelfRel();
+
+        return assembler.toModel(pagedDTOs, findAllLink);
     }
 
     public StudentDTO update(StudentDTO studentDTO) {
@@ -106,7 +121,7 @@ public class StudentService {
     private static void addHateoasLinks(StudentDTO studentDTO) {
         studentDTO.add(linkTo(methodOn(StudentController.class).create(studentDTO)).withRel("create").withType("POST"));
         studentDTO.add(linkTo(methodOn(StudentController.class).findById(studentDTO.getId())).withSelfRel().withType("GET"));
-        studentDTO.add(linkTo(methodOn(StudentController.class).findAll()).withRel("findAll").withType("GET"));
+        studentDTO.add(linkTo(methodOn(StudentController.class).findAll(1, 12, "asc")).withRel("findAll").withType("GET"));
         studentDTO.add(linkTo(methodOn(StudentController.class).update(studentDTO)).withRel("update").withType("PUT"));
         studentDTO.add(linkTo(methodOn(StudentController.class).disableStudent(studentDTO.getId())).withRel("disable").withType("PATCH"));
         studentDTO.add(linkTo(methodOn(StudentController.class).delete(studentDTO.getId())).withRel("delete").withType("DELETE"));
