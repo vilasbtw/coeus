@@ -78,6 +78,26 @@ public class StudentService {
         return assembler.toModel(pagedDTOs, findAllLink);
     }
 
+    public PagedModel<EntityModel<StudentDTO>> findByName(String name, Pageable pageable) {
+        var students = repository.findStudentsByName(name, pageable);
+        var pagedDTOs = students.map(student -> {
+            StudentDTO dto = mapper.toDTO(student);
+            addHateoasLinks(dto);
+            return dto;
+        });
+
+        Link findAllLink = WebMvcLinkBuilder.linkTo(
+            WebMvcLinkBuilder.methodOn(StudentController.class)
+                .findAll(
+                    pageable.getPageNumber(),
+                    pageable.getPageSize(),
+                    String.valueOf(pageable.getSort())
+                )
+        ).withSelfRel();
+
+        return assembler.toModel(pagedDTOs, findAllLink);
+    }
+
     public StudentDTO update(StudentDTO studentDTO) {
 
         if (studentDTO == null) throw new RequiredObjectIsNullException();

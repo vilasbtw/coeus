@@ -2,6 +2,7 @@ package com.coeus.api.integrationtests.controllers.withxml;
 
 import com.coeus.api.config.TestConfigs;
 import com.coeus.api.integrationtests.dto.StudentDTO;
+import com.coeus.api.integrationtests.dto.wrapper.xml.PagedModelStudent;
 import com.coeus.api.integrationtests.testcontainers.AbstractIntegrationTest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -190,6 +191,7 @@ class StudentControllerXmlTest extends AbstractIntegrationTest {
 
         var content = given(specification)
                 .accept(MediaType.APPLICATION_XML_VALUE)
+                .queryParams("page", 3, "size", 12, "direction", "asc")
                 .when()
                 .get()
                 .then()
@@ -199,17 +201,18 @@ class StudentControllerXmlTest extends AbstractIntegrationTest {
                 .body()
                 .asString();
 
-        List<StudentDTO> students = objectMapper.readValue(content, new TypeReference<List<StudentDTO>>() {});
+        PagedModelStudent wrapper = objectMapper.readValue(content, PagedModelStudent.class);
+        List<StudentDTO> students = wrapper.getContent();
 
         StudentDTO StudentOne = students.get(0);
 
         assertNotNull(StudentOne.getId());
         assertTrue(StudentOne.getId() > 0);
 
-        assertEquals("HT3039610", StudentOne.getStudentRegister());
-        assertEquals("Kaique Vilas Boa", StudentOne.getName());
-        assertEquals("kaiquevilas@gmail.com", StudentOne.getEmail());
-        assertEquals("System Analysis And Development", StudentOne.getCourse());
+        assertEquals("306809005", StudentOne.getStudentRegister());
+        assertEquals("Amble", StudentOne.getName());
+        assertEquals("adanilov4q@gizmodo.com", StudentOne.getEmail());
+        assertEquals("Biology", StudentOne.getCourse());
         assertTrue(StudentOne.getEnabled());
 
         StudentDTO studentTwo = students.get(2);
@@ -217,11 +220,11 @@ class StudentControllerXmlTest extends AbstractIntegrationTest {
         assertNotNull(studentTwo.getId());
         assertTrue(studentTwo.getId() > 0);
 
-        assertEquals("HT3087683", studentTwo.getStudentRegister());
-        assertEquals("Luiz Carlos Leão Duarte", studentTwo.getName());
-        assertEquals("chmpgn@outlook.com", studentTwo.getEmail());
-        assertEquals("Business Administration", studentTwo.getCourse());
-        assertTrue(studentTwo.getEnabled());
+        assertEquals("941229837", studentTwo.getStudentRegister());
+        assertEquals("Ambrose", studentTwo.getName());
+        assertEquals("acanto3y@example.com", studentTwo.getEmail());
+        assertEquals("Medicine", studentTwo.getCourse());
+        assertFalse(studentTwo.getEnabled());
     }
 
     private void mockStudent() {

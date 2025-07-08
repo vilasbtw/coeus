@@ -5,17 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f0b0d76f-3962-4f49-841e-77f001e9ccb1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/dto/wrapper/json/StudentEmbeddedDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/dto/wrapper/json/WrapperStudentDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/dto/wrapper/xml/PagedModelStudent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/controllers/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/controllers/BookController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/controllers/EmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/controllers/EmployeeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/controllers/docs/BookControllerDocs.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/controllers/docs/BookControllerDocs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/controllers/docs/EmployeeControllerDocs.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/controllers/docs/EmployeeControllerDocs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/models/dtos/BookDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/models/dtos/BookDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/models/dtos/EmployeeDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/models/dtos/EmployeeDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/services/BookService.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/services/BookService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/services/EmployeeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/services/EmployeeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/unittests/services/BookServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/unittests/services/BookServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/unittests/services/EmployeeServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/unittests/services/EmployeeServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/controllers/StudentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/controllers/StudentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/controllers/docs/StudentControllerDocs.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/controllers/docs/StudentControllerDocs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/repositories/StudentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/repositories/StudentRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/services/StudentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/services/StudentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/withjson/StudentControllerJsonTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/withjson/StudentControllerJsonTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/withxml/StudentControllerXmlTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/withxml/StudentControllerXmlTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/withyaml/StudentControllerYamlTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/withyaml/StudentControllerYamlTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,26 +55,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.CoeusApplication.executor": "Run",
-    "JUnit.All in books (1).executor": "Run",
-    "JUnit.All in books.executor": "Run",
-    "JUnit.SwaggerIntegrationTest.executor": "Run",
-    "JUnit.java in books.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "pagination",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Kaique/Documents/Code/coeus/books/src/test/resources",
-    "settings.editor.selected.configurable": "Docker"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.CoeusApplication.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.All in books (1).executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.All in books.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SwaggerIntegrationTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.java in books.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;pagination&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Kaique/Documents/Code/coeus/books/src/test/resources&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;Docker&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.coeus.api.integrationtests.dto.wrapper" />
       <recent name="com.coeus.api.integrationtests.controllers.withyaml.mapper" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
@@ -84,6 +85,7 @@
       <recent name="" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.coeus.api.integrationtests.dto.wrapper.json" />
       <recent name="com.coeus.api.integrationtests.controllers.cors.withjson" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
@@ -97,7 +99,7 @@
       <recent name="com.coeus.api.integrationtests.dto" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.CoeusApplication">
+  <component name="RunManager" selected="JUnit.All in books">
     <configuration name="CoeusApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.coeus.api.CoeusApplication" />
       <module name="books" />
@@ -144,8 +146,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.CoeusApplication" />
         <item itemvalue="JUnit.All in books" />
+        <item itemvalue="Application.CoeusApplication" />
         <item itemvalue="JUnit.java in books" />
         <item itemvalue="JUnit.SwaggerIntegrationTest" />
       </list>
