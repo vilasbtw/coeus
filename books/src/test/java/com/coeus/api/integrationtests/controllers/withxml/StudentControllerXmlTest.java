@@ -5,9 +5,7 @@ import com.coeus.api.integrationtests.dto.StudentDTO;
 import com.coeus.api.integrationtests.dto.wrapper.xml.PagedModelStudent;
 import com.coeus.api.integrationtests.testcontainers.AbstractIntegrationTest;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.LogDetail;
@@ -204,16 +202,16 @@ class StudentControllerXmlTest extends AbstractIntegrationTest {
         PagedModelStudent wrapper = objectMapper.readValue(content, PagedModelStudent.class);
         List<StudentDTO> students = wrapper.getContent();
 
-        StudentDTO StudentOne = students.get(0);
+        StudentDTO studentOne = students.get(0);
 
-        assertNotNull(StudentOne.getId());
-        assertTrue(StudentOne.getId() > 0);
+        assertNotNull(studentOne.getId());
+        assertTrue(studentOne.getId() > 0);
 
-        assertEquals("306809005", StudentOne.getStudentRegister());
-        assertEquals("Amble", StudentOne.getName());
-        assertEquals("adanilov4q@gizmodo.com", StudentOne.getEmail());
-        assertEquals("Biology", StudentOne.getCourse());
-        assertTrue(StudentOne.getEnabled());
+        assertEquals("306809005", studentOne.getStudentRegister());
+        assertEquals("Amble", studentOne.getName());
+        assertEquals("adanilov4q@gizmodo.com", studentOne.getEmail());
+        assertEquals("Biology", studentOne.getCourse());
+        assertTrue(studentOne.getEnabled());
 
         StudentDTO studentTwo = students.get(2);
 
