@@ -3,6 +3,7 @@ package com.coeus.api.integrationtests.controllers.withyaml;
 import com.coeus.api.config.TestConfigs;
 import com.coeus.api.integrationtests.controllers.withyaml.mapper.YAMLMapper;
 import com.coeus.api.integrationtests.dto.StudentDTO;
+import com.coeus.api.integrationtests.dto.wrapper.json.WrapperStudentDTO;
 import com.coeus.api.integrationtests.dto.wrapper.xml.PagedModelStudent;
 import com.coeus.api.integrationtests.testcontainers.AbstractIntegrationTest;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -240,6 +241,49 @@ class StudentControllerYamlTest extends AbstractIntegrationTest {
         assertEquals("Medicine", studentTwo.getCourse());
         assertFalse(studentTwo.getEnabled());
     }
+
+    @Test
+    @Order(7)
+    void findByName() throws JsonProcessingException {
+
+        var response = given(specification)
+                .accept(MediaType.APPLICATION_YAML_VALUE)
+                .pathParam("name", "and")
+                .queryParams("page", 0, "size", 12, "direction", "asc")
+                .when()
+                .get("findByName/{name}")
+                .then()
+                .contentType(MediaType.APPLICATION_YAML_VALUE)
+                .statusCode(200)
+                .extract()
+                .body()
+                .as(PagedModelStudent.class, objectMapper);
+
+        List<StudentDTO> students = response.getContent();
+
+        StudentDTO StudentOne = students.get(0);
+
+        assertNotNull(StudentOne.getId());
+        assertTrue(StudentOne.getId() > 0);
+
+        assertEquals("093855501", StudentOne.getStudentRegister());
+        assertEquals("Aleksandr", StudentOne.getName());
+        assertEquals("amouserkt@fastcompany.com", StudentOne.getEmail());
+        assertEquals("Medicine", StudentOne.getCourse());
+        assertTrue(StudentOne.getEnabled());
+
+        StudentDTO studentTwo = students.get(2);
+
+        assertNotNull(studentTwo.getId());
+        assertTrue(studentTwo.getId() > 0);
+
+        assertEquals("HT3012209", studentTwo.getStudentRegister());
+        assertEquals("Alexandre Magno Abrão", studentTwo.getName());
+        assertEquals("chorao013@gmail.com", studentTwo.getEmail());
+        assertEquals("Economics", studentTwo.getCourse());
+        assertTrue(studentTwo.getEnabled());
+    }
+
 
     private void mockStudent() {
         studentDTO.setStudentRegister("HT3035502");

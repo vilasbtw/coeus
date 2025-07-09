@@ -5,22 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f0b0d76f-3962-4f49-841e-77f001e9ccb1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/withjson/BookControllerJsonTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/withjson/EmployeeControllerJsonTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/withxml/BookControllerXmlTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/withxml/EmployeeControllerXmlTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/withyaml/BookControllerYamlTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/withyaml/EmployeeControllerYamlTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/dto/BookDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/dto/EmployeeDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/dto/wrapper/json/BookEmbeddedDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/dto/wrapper/json/EmployeeEmbeddedDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/dto/wrapper/json/WrapperBookDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/dto/wrapper/json/WrapperEmployeeDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/dto/wrapper/xml/PagedModelBook.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/dto/wrapper/xml/PagedModelEmployee.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/repositories/StudentRepositoryTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/withjson/StudentControllerJsonTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/withjson/StudentControllerJsonTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/withxml/StudentControllerXmlTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/withxml/StudentControllerXmlTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/withyaml/StudentControllerYamlTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/withyaml/StudentControllerYamlTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,8 +20,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="JUnit5 Test Class" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -69,7 +58,9 @@
     "JUnit.BookControllerXmlTest.executor": "Run",
     "JUnit.EmployeeControllerJsonTest.create.executor": "Run",
     "JUnit.EmployeeControllerJsonTest.executor": "Run",
+    "JUnit.StudentControllerJsonTest.executor": "Run",
     "JUnit.StudentControllerYamlTest.executor": "Run",
+    "JUnit.StudentRepositoryTest.executor": "Run",
     "JUnit.StudentServiceTest.executor": "Run",
     "JUnit.SwaggerIntegrationTest.executor": "Run",
     "JUnit.java in books.executor": "Run",
@@ -101,6 +92,7 @@
       <recent name="com.coeus.api.integrationtests.controllers.cors.withjson" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.coeus.api.repositories" />
       <recent name="com.coeus.api.integrationtests.controllers.withjson" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -111,7 +103,7 @@
       <recent name="com.coeus.api.integrationtests.dto" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.java in books">
+  <component name="RunManager" selected="JUnit.StudentRepositoryTest">
     <configuration name="CoeusApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.coeus.api.CoeusApplication" />
       <module name="books" />
@@ -140,7 +132,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="EmployeeControllerJsonTest.create" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="StudentControllerJsonTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="books" />
       <extension name="coverage">
         <pattern>
@@ -149,23 +141,22 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.coeus.api.integrationtests.controllers.withjson" />
-      <option name="MAIN_CLASS_NAME" value="com.coeus.api.integrationtests.controllers.withjson.EmployeeControllerJsonTest" />
-      <option name="METHOD_NAME" value="create" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="MAIN_CLASS_NAME" value="com.coeus.api.integrationtests.controllers.withjson.StudentControllerJsonTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="StudentControllerYamlTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="StudentRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="books" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.coeus.api.integrationtests.controllers.withyaml.*" />
+          <option name="PATTERN" value="com.coeus.api.repositories.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.coeus.api.integrationtests.controllers.withyaml" />
-      <option name="MAIN_CLASS_NAME" value="com.coeus.api.integrationtests.controllers.withyaml.StudentControllerYamlTest" />
+      <option name="PACKAGE_NAME" value="com.coeus.api.repositories" />
+      <option name="MAIN_CLASS_NAME" value="com.coeus.api.repositories.StudentRepositoryTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -181,11 +172,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.java in books" />
-        <item itemvalue="JUnit.EmployeeControllerJsonTest" />
-        <item itemvalue="JUnit.EmployeeControllerJsonTest.create" />
+        <item itemvalue="JUnit.StudentRepositoryTest" />
         <item itemvalue="Application.CoeusApplication" />
-        <item itemvalue="JUnit.StudentControllerYamlTest" />
+        <item itemvalue="JUnit.java in books" />
+        <item itemvalue="JUnit.StudentControllerJsonTest" />
+        <item itemvalue="JUnit.EmployeeControllerJsonTest" />
       </list>
     </recent_temporary>
   </component>

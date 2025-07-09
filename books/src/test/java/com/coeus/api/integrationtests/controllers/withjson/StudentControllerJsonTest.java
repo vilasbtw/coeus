@@ -220,6 +220,50 @@ class StudentControllerJsonTest extends AbstractIntegrationTest {
         assertFalse(studentTwo.getEnabled());
     }
 
+    @Test
+    @Order(7)
+    void findByName() throws JsonProcessingException {
+
+        // {{baseUrl}}/students/findByName/and?page=0&size=12&direction=asc
+
+        var content = given(specification)
+                .accept(MediaType.APPLICATION_JSON_VALUE)
+                .pathParam("name", "and")
+                .queryParams("page", 0, "size", 12, "direction", "asc")
+                .when()
+                .get("findByName/{name}")
+                .then()
+                .statusCode(200)
+                .extract()
+                .body()
+                .asString();
+
+        WrapperStudentDTO wrapper = objectMapper.readValue(content, WrapperStudentDTO.class);
+        List<StudentDTO> students = wrapper.getEmbedded().getStudents();
+
+        StudentDTO StudentOne = students.get(0);
+
+        assertNotNull(StudentOne.getId());
+        assertTrue(StudentOne.getId() > 0);
+
+        assertEquals("093855501", StudentOne.getStudentRegister());
+        assertEquals("Aleksandr", StudentOne.getName());
+        assertEquals("amouserkt@fastcompany.com", StudentOne.getEmail());
+        assertEquals("Medicine", StudentOne.getCourse());
+        assertTrue(StudentOne.getEnabled());
+
+        StudentDTO studentTwo = students.get(2);
+
+        assertNotNull(studentTwo.getId());
+        assertTrue(studentTwo.getId() > 0);
+
+        assertEquals("HT3012209", studentTwo.getStudentRegister());
+        assertEquals("Alexandre Magno Abrão", studentTwo.getName());
+        assertEquals("chorao013@gmail.com", studentTwo.getEmail());
+        assertEquals("Economics", studentTwo.getCourse());
+        assertTrue(studentTwo.getEnabled());
+    }
+
     private void mockStudent() {
         studentDTO.setStudentRegister("HT3035502");
         studentDTO.setName("Linus");
