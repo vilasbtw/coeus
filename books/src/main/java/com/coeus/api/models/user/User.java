@@ -23,6 +23,7 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private String password;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private UserRole role;
 
@@ -32,12 +33,17 @@ public class User implements UserDetails {
     public User() {
     }
 
-    public User(Long id, String username, String password, UserRole role, Long employeeId) {
-        this.id = id;
+    public User(String username, String password, UserRole role, Long employeeId) {
         this.username = username;
         this.password = password;
         this.role = role;
         this.employeeId = employeeId;
+    }
+
+    public User(String username, String password, UserRole role) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
     }
 
     public Long getId() {
