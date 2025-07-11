@@ -29,10 +29,10 @@ public class SecurityConfig {
             .csrf(AbstractHttpConfigurer::disable)
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers(HttpMethod.POST, "/employee").hasRole("COORDINATOR")
-                .requestMatchers(HttpMethod.PUT, "/employee/**").hasRole("COORDINATOR")
-                .requestMatchers(HttpMethod.DELETE, "/employee/**").hasRole("COORDINATOR")
-                .requestMatchers(HttpMethod.GET, "/employee/**").hasRole("COORDINATOR")
+                .requestMatchers(HttpMethod.POST, "/employees").hasRole("COORDINATOR")
+                .requestMatchers(HttpMethod.PUT, "/employees/**").hasRole("COORDINATOR")
+                .requestMatchers(HttpMethod.DELETE, "/employees/**").hasRole("COORDINATOR")
+                .requestMatchers(HttpMethod.GET, "/employees/**").hasRole("COORDINATOR")
                 .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                     // CHANGE TO COORDINATOR ONLY LATER!
                     // ONLY TESTING
