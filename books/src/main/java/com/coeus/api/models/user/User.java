@@ -8,7 +8,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
-
 @Entity
 @Table(name = "users")
 public class User implements UserDetails {
@@ -30,6 +29,18 @@ public class User implements UserDetails {
     @Column(name = "employee_id", nullable = false)
     private Long employeeId;
 
+    @Column(name = "account_expired")
+    private boolean accountExpired;
+
+    @Column(name = "account_locked")
+    private boolean accountLocked;
+
+    @Column(name = "credentials_expired")
+    private boolean credentialsExpired;
+
+    @Column(name = "enabled")
+    private boolean enabled;
+
     public User() {
     }
 
@@ -38,12 +49,6 @@ public class User implements UserDetails {
         this.password = password;
         this.role = role;
         this.employeeId = employeeId;
-    }
-
-    public User(String username, String password, UserRole role) {
-        this.username = username;
-        this.password = password;
-        this.role = role;
     }
 
     public Long getId() {
@@ -93,26 +98,24 @@ public class User implements UserDetails {
         return List.of(new SimpleGrantedAuthority("ROLE_" + this.role.name()));
     }
 
-    // TODO
-
     @Override
     public boolean isAccountNonExpired() {
-        return true;
+        return !this.accountExpired;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return !this.accountLocked;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return true;
+        return !this.credentialsExpired;
     }
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return this.enabled;
     }
 
 }
