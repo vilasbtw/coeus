@@ -5,10 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f0b0d76f-3962-4f49-841e-77f001e9ccb1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/security/JwtTokenProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/models/dtos/TokenDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/security/JwtTokenFilter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/controllers/AuthorizationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/controllers/AuthorizationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/models/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/models/user/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +23,7 @@
         <option value="Interface" />
         <option value="JUnit5 Test Class" />
         <option value="Class" />
+        <option value="Record" />
       </list>
     </option>
   </component>
