@@ -108,29 +108,33 @@ localhost:8080/books/
 ## To-do:
 
 ### Next Features:
-- [ ] Configure and enable CORS
-- [ ] Update the tables so they match the modeling
-- [ ] Add pagination support to student listing 
-- [ ] Add JWT and Spring Security
-- [ ] Write integration tests with Testcontainers and REST Assured
-- [ ] Implement the logic of renting books
-- [ ] Implement warning and penalty system
-- [ ] Add front-end part
-- [ ] Deploy API to cloud
-- [ ] Add MIT license
+- [ ] Add Spring Security + JWT;
+- [ ] Implement Integration Tests for Spring Security;
+- [ ] Dockerize the application;
+- [ ] Deploy the API on AWS;
+- [ ] Continous Deployment AWS with GitHub Actons;
+- [ ] Deploy the API on GCP;
+- [ ] Continous Deployment GCP with GitHub Actons;
+- [ ] Add React-based front-end;
+- [ ] Implement the logic of renting books;
+- [ ] Implement warning and penalty system;
+- [ ] Add MIT license;
 
 ### Completed:
-- [x] Created `Book` entity
-- [x] Implemented MVC pattern (`BookController`, `BookService`, `BookRepository`)
-- [x] Connected the API to a MySQL database with Spring Data JPA 
-- [x] Implemented CRUD operations (`create(bookDTO)`, `findById(id)`, `findAll()`, `update(bookDTO)` and `delete(id)`)
-- [x] Added exception handling with custom error responses
-- [x] Applied the DTO pattern to manage Data Transfer Objects
-- [x] Added support for database migrations with Flyway
-- [x] Enabled content negotiation (support for XML and YAML)
-- [x] Implemented HATEOAS
-- [x] Written unit tests using JUnit and Mockito for the BookService class
-- [x] Documented the API with Swagger
-- [x] Remodeled the database
-- [x] Implemented the `Student` endpoints
-- [x] Implemented the `Employee` endpoints
+- [x] Created `Book` entity;
+- [x] Implemented MVC pattern (`BookController`, `BookService`, `BookRepository`);
+- [x] Connected the API to a MySQL database with Spring Data JPA;
+- [x] Implemented CRUD operations (`create(bookDTO)`, `findById(id)`, `findAll()`, `update(bookDTO)` and `delete(id)`);
+- [x] Added exception handling with custom error responses;
+- [x] Applied the DTO pattern to manage Data Transfer Objects;
+- [x] Added support for database migrations with Flyway;
+- [x] Enabled content negotiation (support for XML and YAML);
+- [x] Implemented HATEOAS;
+- [x] Written unit tests using JUnit and Mockito for the BookService class;
+- [x] Documented the API with Swagger;
+- [x] Remodeled the database;
+- [x] Implemented the `Student` endpoints;
+- [x] Implemented the `Employee` endpoints;
+- [x] Written integration tests with Testcontainers and REST Assured;
+- [x] Configured and enable CORS;
+- [x] Added pagination support to student listing;

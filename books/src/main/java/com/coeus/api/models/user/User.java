@@ -39,7 +39,7 @@ public class User implements UserDetails {
     private boolean credentialsExpired;
 
     @Column(name = "enabled")
-    private boolean enabled;
+    private boolean enabled = true;
 
     public User() {
     }
@@ -103,9 +103,17 @@ public class User implements UserDetails {
         return !this.accountExpired;
     }
 
+    public void setAccountExpired(boolean accountExpired) {
+        this.accountExpired = accountExpired;
+    }
+
     @Override
     public boolean isAccountNonLocked() {
         return !this.accountLocked;
+    }
+
+    public void setAccountLocked(boolean accountLocked) {
+        this.accountLocked = accountLocked;
     }
 
     @Override
@@ -113,9 +121,17 @@ public class User implements UserDetails {
         return !this.credentialsExpired;
     }
 
+    public void setCredentialsExpired(boolean credentialsExpired) {
+        this.credentialsExpired = credentialsExpired;
+    }
+
     @Override
     public boolean isEnabled() {
         return this.enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
 }

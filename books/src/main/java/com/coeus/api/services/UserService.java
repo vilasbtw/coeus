@@ -1,0 +1,25 @@
+package com.coeus.api.services;
+
+import com.coeus.api.models.dtos.UserStatusDTO;
+import com.coeus.api.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class UserService {
+
+    @Autowired
+    private UserRepository userRepository;
+
+    public void updateUserStatus(Long id, UserStatusDTO dto) {
+        var user = userRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("User not found"));
+
+        if (dto.getEnabled() != null) user.setEnabled(dto.getEnabled());
+        if (dto.getAccountLocked() != null) user.setAccountLocked(dto.getAccountLocked());
+        if (dto.getAccountExpired() != null) user.setAccountExpired(dto.getAccountExpired());
+        if (dto.getCredentialsExpired() != null) user.setCredentialsExpired(dto.getCredentialsExpired());
+
+        userRepository.save(user);
+    }
+}
