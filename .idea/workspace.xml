@@ -5,15 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f0b0d76f-3962-4f49-841e-77f001e9ccb1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/models/dtos/UserStatusDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/services/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/controllers/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/controllers/docs/UserControllerDocs.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/controllers/docs/UserControllerDocs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/models/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/models/user/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/src/main/resources/db/migration/V12__Alter_Table_User.sql" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/main/resources/db/migration/V12__Alter_Table_User.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/controllers/AuthorizationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/controllers/AuthorizationController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

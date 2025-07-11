@@ -29,14 +29,13 @@ public class SecurityConfig {
             .csrf(AbstractHttpConfigurer::disable)
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers(HttpMethod.POST, "/employees").hasRole("COORDINATOR")
-                .requestMatchers(HttpMethod.PUT, "/employees/**").hasRole("COORDINATOR")
-                .requestMatchers(HttpMethod.DELETE, "/employees/**").hasRole("COORDINATOR")
-                .requestMatchers(HttpMethod.GET, "/employees/**").hasRole("COORDINATOR")
+                            .requestMatchers(HttpMethod.POST, "/employees", "/students").hasRole("COORDINATOR")
+                            .requestMatchers(HttpMethod.GET, "/employees/**", "/students/**").hasRole("COORDINATOR")
+                            .requestMatchers(HttpMethod.PUT, "/employees/**", "/students/**").hasRole("COORDINATOR")
+                            .requestMatchers(HttpMethod.DELETE, "/employees/**", "/students/**").hasRole("COORDINATOR")
+                            .requestMatchers(HttpMethod.PATCH, "/employees/**", "/students/**").hasRole("COORDINATOR")
                 .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
-                    // CHANGE TO COORDINATOR ONLY LATER!
-                    // ONLY TESTING
-                    .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
+                .requestMatchers(HttpMethod.POST, "/auth/register").hasRole("COORDINATOR")
                 .anyRequest().authenticated()
             )
                 .addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class)

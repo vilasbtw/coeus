@@ -16,6 +16,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.HttpStatus;
 
 @Tag(name = "Authentication Endpoint")
 @RestController
@@ -46,7 +47,7 @@ public class AuthorizationController implements AuthorizationControllerDocs {
     public ResponseEntity<?> register(@RequestBody @Valid RegisterDTO data) {
         if (repository.findByUsername(data.getUsername()).isPresent()) {
             return ResponseEntity
-                .badRequest()
+                .status(HttpStatus.BAD_REQUEST)
                 .body("This username is already in use. Please pick another one.");
         }
 
@@ -54,6 +55,8 @@ public class AuthorizationController implements AuthorizationControllerDocs {
         User newUser = new User(data.getUsername(), encryptedPassword, data.getRole(), data.getEmployeeId());
 
         repository.save(newUser);
-        return ResponseEntity.ok().build();
+        return ResponseEntity
+            .status(HttpStatus.CREATED)
+            .build();
     }
 }
