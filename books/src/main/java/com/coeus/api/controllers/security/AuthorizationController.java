@@ -40,7 +40,7 @@ public class AuthorizationController implements AuthorizationControllerDocs {
     private RefreshTokenService refreshTokenService;
 
     @PostMapping("/login")
-    public ResponseEntity<AuthTokensDTO> login(@RequestBody @Valid AuthenticationDTO data) {
+    public ResponseEntity<TokenDTO> login(@RequestBody @Valid AuthenticationDTO data) {
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.getUsername(), data.getPassword());
         var authentication = authenticationManager.authenticate(usernamePassword);
         var user = (User) authentication.getPrincipal();
@@ -48,7 +48,7 @@ public class AuthorizationController implements AuthorizationControllerDocs {
         String accessToken = jwtTokenProvider.generateToken(user);
         String refreshToken = refreshTokenService.generateToken(user).getToken();
 
-        return ResponseEntity.ok(new AuthTokensDTO(accessToken, refreshToken));
+        return ResponseEntity.ok(new TokenDTO(accessToken, refreshToken));
     }
 
     @PostMapping("/refresh-token")
