@@ -1,5 +1,7 @@
 package com.coeus.api.services.security;
 
+import com.coeus.api.exceptions.ExpiredRefreshTokenException;
+import com.coeus.api.exceptions.InvalidRefreshTokenException;
 import com.coeus.api.models.security.auth.RefreshToken;
 import com.coeus.api.models.security.user.User;
 import com.coeus.api.repositories.security.RefreshTokenRepository;
@@ -44,11 +46,11 @@ public class RefreshTokenService {
 
     public String processRefreshToken(String token) {
         RefreshToken refreshToken = findByToken(token)
-            .orElseThrow(() -> new RuntimeException("Invalid token."));
+            .orElseThrow(InvalidRefreshTokenException::new);
 
         if (!isValid(refreshToken)) {
             refreshTokenRepository.delete(refreshToken);
-            throw new RuntimeException("Expired token.");
+            throw new ExpiredRefreshTokenException();
         }
 
         User user = refreshToken.getUser();

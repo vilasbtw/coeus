@@ -26,22 +26,32 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-            .csrf(AbstractHttpConfigurer::disable)
-            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-            .authorizeHttpRequests(auth -> auth
-                            .requestMatchers(HttpMethod.POST, "/employees", "/students").hasRole("COORDINATOR")
-                            .requestMatchers(HttpMethod.GET, "/employees/**").hasRole("COORDINATOR")
-                            .requestMatchers(HttpMethod.PUT, "/employees/**", "/students/**").hasRole("COORDINATOR")
-                            .requestMatchers(HttpMethod.DELETE, "/employees/**", "/students/**").hasRole("COORDINATOR")
-                            .requestMatchers(HttpMethod.PATCH, "/employees/**", "/students/**").hasRole("COORDINATOR")
-                        .requestMatchers(HttpMethod.POST, "/auth/register").hasRole("COORDINATOR")
+                .csrf(AbstractHttpConfigurer::disable)
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .authorizeHttpRequests(auth -> auth
+                        // authentication endpoints
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/refresh-token").permitAll()
-                        .requestMatchers("/v3/api-docs/**","/swagger-ui/**","/swagger-ui.html","/swagger-resources/**", "/webjars/**").permitAll()
-                .anyRequest().authenticated()
-            )
+                        .requestMatchers(HttpMethod.POST, "/auth/register").hasRole("COORDINATOR")
+                        .requestMatchers(HttpMethod.POST, "/auth/logout").authenticated()
+                        // coordinator endpoints
+                        .requestMatchers(HttpMethod.POST, "/employees", "/students").hasRole("COORDINATOR")
+                        .requestMatchers(HttpMethod.GET, "/employees/**").hasRole("COORDINATOR")
+                        .requestMatchers(HttpMethod.PUT, "/employees/**", "/students/**").hasRole("COORDINATOR")
+                        .requestMatchers(HttpMethod.DELETE, "/employees/**", "/students/**").hasRole("COORDINATOR")
+                        .requestMatchers(HttpMethod.PATCH, "/employees/**", "/students/**").hasRole("COORDINATOR")
+                        // open API Swagger endpoints
+                        .requestMatchers(
+                                "/v3/api-docs/**",
+                                "/swagger-ui/**",
+                                "/swagger-ui.html",
+                                "/swagger-resources/**",
+                                "/webjars/**"
+                        ).permitAll()
+                        .anyRequest().authenticated()
+                )
                 .addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class)
-            .build();
+                .build();
     }
 
     @Bean

@@ -1,6 +1,7 @@
 package com.coeus.api.controllers.security;
 
 import com.coeus.api.controllers.docs.AuthorizationControllerDocs;
+import com.coeus.api.exceptions.UsernameAlreadyExistsException;
 import com.coeus.api.models.dtos.security.*;
 import com.coeus.api.models.security.user.User;
 import com.coeus.api.repositories.security.UserRepository;
@@ -16,6 +17,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 
 @Tag(name = "Authentication Endpoint")
 @RestController
@@ -57,13 +59,17 @@ public class AuthorizationController implements AuthorizationControllerDocs {
         return ResponseEntity.ok(new TokenDTO(newAccessToken));
     }
 
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(@AuthenticationPrincipal User user) {
+        refreshTokenService.deleteByUser(user);
+        return ResponseEntity.ok().build();
+    }
+
     @PostMapping(value = "/register", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE})
     public ResponseEntity<?> register(@RequestBody @Valid RegisterDTO data) {
         if (repository.findByUsername(data.getUsername()).isPresent()) {
-            return ResponseEntity
-                .status(HttpStatus.BAD_REQUEST)
-                .body("This username is already in use. Please pick another one.");
+            throw new UsernameAlreadyExistsException("This username is already in use. Please pick another one.");
         }
 
         String encryptedPassword = passwordEncoder.encode(data.getPassword());
