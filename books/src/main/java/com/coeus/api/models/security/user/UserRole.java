@@ -1,4 +1,4 @@
-package com.coeus.api.models.user;
+package com.coeus.api.models.security.user;
 
 public enum UserRole {
     LIBRARIAN("ROLE_LIBRARIAN"),

@@ -1,8 +1,8 @@
-package com.coeus.api.controllers;
+package com.coeus.api.controllers.security;
 
 import com.coeus.api.controllers.docs.UserControllerDocs;
-import com.coeus.api.models.dtos.UserStatusDTO;
-import com.coeus.api.services.UserService;
+import com.coeus.api.models.dtos.security.UserStatusDTO;
+import com.coeus.api.services.security.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

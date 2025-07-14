@@ -1,12 +1,11 @@
-package com.coeus.api.controllers;
+package com.coeus.api.controllers.security;
 
 import com.coeus.api.controllers.docs.AuthorizationControllerDocs;
-import com.coeus.api.models.dtos.AuthenticationDTO;
-import com.coeus.api.models.dtos.RegisterDTO;
-import com.coeus.api.models.dtos.TokenDTO;
-import com.coeus.api.models.user.User;
-import com.coeus.api.repositories.UserRepository;
+import com.coeus.api.models.dtos.security.*;
+import com.coeus.api.models.security.user.User;
+import com.coeus.api.repositories.security.UserRepository;
 import com.coeus.api.security.JwtTokenProvider;
+import com.coeus.api.services.security.RefreshTokenService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,15 +32,31 @@ public class AuthorizationController implements AuthorizationControllerDocs {
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    JwtTokenProvider jwtTokenProvider;
+    private JwtTokenProvider jwtTokenProvider;
+
+    @Autowired
+    private RefreshTokenService refreshTokenService;
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody @Valid AuthenticationDTO data) {
+    public ResponseEntity<AuthTokensDTO> login(@RequestBody @Valid AuthenticationDTO data) {
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.getUsername(), data.getPassword());
         var authentication = authenticationManager.authenticate(usernamePassword);
-        var token = jwtTokenProvider.generateToken((User) authentication.getPrincipal());
-        return ResponseEntity.ok(new TokenDTO(token));
+        var user = (User) authentication.getPrincipal();
+
+        String accessToken = jwtTokenProvider.generateToken(user);
+        String refreshToken = refreshTokenService.generateToken(user).getToken();
+
+        return ResponseEntity.ok(new AuthTokensDTO(accessToken, refreshToken));
     }
+
+    @PostMapping("/refresh-token")
+    public ResponseEntity<TokenDTO> refreshToken(@RequestBody RefreshTokenDTO request) {
+        String refreshToken = request.getRefreshToken();
+        String newAccessToken = refreshTokenService.processRefreshToken(refreshToken);
+
+        return ResponseEntity.ok(new TokenDTO(newAccessToken));
+    }
+
     @PostMapping(value = "/register", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE})
     public ResponseEntity<?> register(@RequestBody @Valid RegisterDTO data) {

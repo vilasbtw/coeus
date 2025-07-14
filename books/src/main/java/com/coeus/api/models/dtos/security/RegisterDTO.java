@@ -1,16 +1,22 @@
-package com.coeus.api.models.dtos;
+package com.coeus.api.models.dtos.security;
 
-import com.coeus.api.models.user.UserRole;
+import com.coeus.api.models.security.user.UserRole;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public class RegisterDTO {
 
+    @NotBlank(message = "Username is required")
     private String username;
 
+    @NotBlank(message = "Password is required")
     private String password;
 
+    @NotNull(message = "User role is required")
     private UserRole role;
 
+    @NotNull(message = "Employee ID is required")
     @JsonProperty("employee_id")
     private Long employeeId;
 

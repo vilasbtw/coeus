@@ -1,4 +1,4 @@
-package com.coeus.api.models.dtos;
+package com.coeus.api.models.dtos.security;
 
 public class AuthenticationDTO {
 

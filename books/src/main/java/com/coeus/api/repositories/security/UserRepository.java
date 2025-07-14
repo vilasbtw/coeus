@@ -1,6 +1,6 @@
-package com.coeus.api.repositories;
+package com.coeus.api.repositories.security;
 
-import com.coeus.api.models.user.User;
+import com.coeus.api.models.security.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

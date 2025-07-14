@@ -1,7 +1,7 @@
 package com.coeus.api.security;
 
-import com.coeus.api.models.user.User;
-import com.coeus.api.repositories.UserRepository;
+import com.coeus.api.models.security.user.User;
+import com.coeus.api.repositories.security.UserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

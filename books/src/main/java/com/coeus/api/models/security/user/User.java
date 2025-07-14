@@ -1,4 +1,4 @@
-package com.coeus.api.models.user;
+package com.coeus.api.models.security.user;
 
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;

@@ -1,7 +1,7 @@
-package com.coeus.api.services;
+package com.coeus.api.services.security;
 
-import com.coeus.api.models.dtos.UserStatusDTO;
-import com.coeus.api.repositories.UserRepository;
+import com.coeus.api.models.dtos.security.UserStatusDTO;
+import com.coeus.api.repositories.security.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

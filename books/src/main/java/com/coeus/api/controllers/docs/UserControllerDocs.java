@@ -1,7 +1,7 @@
 package com.coeus.api.controllers.docs;
 
-import com.coeus.api.models.dtos.UserStatusDTO;
-import com.coeus.api.models.user.User;
+import com.coeus.api.models.dtos.security.UserStatusDTO;
+import com.coeus.api.models.security.user.User;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
