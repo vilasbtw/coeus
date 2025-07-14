@@ -35,7 +35,8 @@ public class AbstractIntegrationTest {
             return Map.of(
                     "spring.datasource.url", mysql.getJdbcUrl(),
                     "spring.datasource.username", mysql.getUsername(),
-                    "spring.datasource.password", mysql.getPassword()
+                    "spring.datasource.password", mysql.getPassword(),
+                    "server.port", "8888"
             );
         }
 
@@ -51,6 +52,5 @@ public class AbstractIntegrationTest {
                     (Map) createConnectionConfiguration());
             environment.getPropertySources().addFirst(testcontainers);
         }
-
     }
 }

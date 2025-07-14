@@ -32,7 +32,7 @@ public class SecurityConfig {
                         // authentication endpoints
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/refresh-token").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/auth/register").hasRole("COORDINATOR")
+                        .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/logout").authenticated()
                         // coordinator endpoints
                         .requestMatchers(HttpMethod.POST, "/employees", "/students").hasRole("COORDINATOR")
