@@ -1,10 +1,15 @@
 package com.coeus.api.integrationtests.controllers.withjson;
 
 import com.coeus.api.config.TestConfigs;
+import com.coeus.api.integrationtests.dto.AuthenticationDTO;
+import com.coeus.api.integrationtests.dto.TokenDTO;
 import com.coeus.api.integrationtests.dto.wrapper.json.WrapperBookDTO;
 import com.coeus.api.integrationtests.testcontainers.AbstractIntegrationTest;
 import com.coeus.api.integrationtests.dto.BookDTO;
 
+import com.coeus.api.models.security.user.User;
+import com.coeus.api.models.security.user.UserRole;
+import com.coeus.api.repositories.security.UserRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -14,8 +19,10 @@ import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
 
@@ -25,19 +32,69 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class BookControllerJsonTest extends AbstractIntegrationTest {
 
     private static RequestSpecification specification;
     private static ObjectMapper objectMapper;
     private static BookDTO bookDTO;
 
+    private static TokenDTO tokenDTO;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private PasswordEncoder encoder;
+
     @BeforeAll
-    static void setUp() {
+    void setUp() {
         objectMapper = new ObjectMapper();
         // ignores HATEOAS links.
         objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 
         bookDTO = new BookDTO();
+
+        if (userRepository.findByUsername("kvilas").isEmpty()) {
+            var user = new User();
+
+            user.setUsername("kvilas");
+            user.setPassword(encoder.encode("123"));
+            user.setRole(UserRole.COORDINATOR);
+
+            userRepository.save(user);
+        }
+    }
+
+    @Order(0)
+    @Test
+    void login() {
+        AuthenticationDTO credentials = new AuthenticationDTO("kvilas", "123");
+
+         tokenDTO = given()
+                .basePath("auth/login")
+                .port(TestConfigs.SERVER_PORT)
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .body(credentials)
+                .when()
+                .post()
+                .then()
+                .statusCode(200)
+                .extract()
+                .body()
+                .as(TokenDTO.class);
+
+        specification = new RequestSpecBuilder()
+                .addHeader(TestConfigs.HEADER_PARAM_ORIGIN, TestConfigs.AUTHORIZED_ORIGIN)
+                .addHeader(TestConfigs.HEADER_PARAM_AUTHORIZATION, "Bearer " + tokenDTO.getAccessToken())
+                .setBasePath("/books")
+                .setPort(TestConfigs.SERVER_PORT)
+                .addFilter(new RequestLoggingFilter(LogDetail.ALL))
+                .addFilter(new ResponseLoggingFilter(LogDetail.ALL))
+                .build();
+
+        assertNotNull(tokenDTO.getAccessToken());
+        assertNotNull(tokenDTO.getRefreshToken());
     }
 
     @Test

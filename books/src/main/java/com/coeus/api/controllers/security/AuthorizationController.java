@@ -48,15 +48,15 @@ public class AuthorizationController implements AuthorizationControllerDocs {
         String accessToken = jwtTokenProvider.generateToken(user);
         String refreshToken = refreshTokenService.generateToken(user).getToken();
 
-        return ResponseEntity.ok(new TokenDTO(accessToken, refreshToken));
+        return ResponseEntity.ok(new TokenDTO(data.getUsername(), accessToken, refreshToken));
     }
 
     @PostMapping("/refresh-token")
-    public ResponseEntity<TokenDTO> refreshToken(@RequestBody RefreshTokenDTO request) {
+    public ResponseEntity<RefreshTokenDTO> refreshToken(@RequestBody RefreshTokenDTO request) {
         String refreshToken = request.getRefreshToken();
         String newAccessToken = refreshTokenService.processRefreshToken(refreshToken);
 
-        return ResponseEntity.ok(new TokenDTO(newAccessToken));
+        return ResponseEntity.ok(new RefreshTokenDTO(refreshToken));
     }
 
     @PostMapping("/logout")

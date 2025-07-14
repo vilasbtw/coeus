@@ -1,5 +1,8 @@
-package com.coeus.api.models.dtos.security;
+package com.coeus.api.integrationtests.dto;
 
+import jakarta.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class RefreshTokenDTO {
     private String refreshToken;
 

@@ -23,14 +23,14 @@ public interface AuthorizationControllerDocs {
                 responseCode = "200",
                 content = @Content(
                     mediaType = "application/json",
-                    schema = @Schema(implementation = AuthTokensDTO.class)
+                    schema = @Schema(implementation = TokenDTO.class)
                 )),
             @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
             @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
             @ApiResponse(description = "Internal Server Error", responseCode = "500", content = @Content)
         }
     )
-    ResponseEntity<AuthTokensDTO> login(@RequestBody @Valid AuthenticationDTO data);
+    ResponseEntity<TokenDTO> login(@RequestBody @Valid AuthenticationDTO data);
 
     @Operation(
         summary = "Refreshes an Access Token",
@@ -40,14 +40,14 @@ public interface AuthorizationControllerDocs {
             @ApiResponse(
                 description = "Success",
                 responseCode = "200",
-                content = @Content(mediaType = "application/json", schema = @Schema(implementation = TokenDTO.class))
+                content = @Content(mediaType = "application/json", schema = @Schema(implementation = RefreshTokenDTO.class))
             ),
             @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
             @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
             @ApiResponse(description = "Internal Server Error", responseCode = "500", content = @Content)
         }
     )
-    ResponseEntity<TokenDTO> refreshToken(@RequestBody RefreshTokenDTO request);
+    ResponseEntity<RefreshTokenDTO> refreshToken(@RequestBody RefreshTokenDTO request);
 
     @Operation(
             summary = "Creates a new User",

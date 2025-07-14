@@ -2,9 +2,14 @@ package com.coeus.api.integrationtests.controllers.withyaml;
 
 import com.coeus.api.config.TestConfigs;
 import com.coeus.api.integrationtests.controllers.withyaml.mapper.YAMLMapper;
+import com.coeus.api.integrationtests.dto.AuthenticationDTO;
 import com.coeus.api.integrationtests.dto.BookDTO;
+import com.coeus.api.integrationtests.dto.TokenDTO;
 import com.coeus.api.integrationtests.dto.wrapper.xml.PagedModelBook;
 import com.coeus.api.integrationtests.testcontainers.AbstractIntegrationTest;
+import com.coeus.api.models.security.user.User;
+import com.coeus.api.models.security.user.UserRole;
+import com.coeus.api.repositories.security.UserRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.config.EncoderConfig;
@@ -15,8 +20,10 @@ import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
 
@@ -26,30 +33,73 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class BookControllerYamlTest extends AbstractIntegrationTest {
 
     private static RequestSpecification specification;
     private static YAMLMapper objectMapper;
     private static BookDTO bookDTO;
 
+    private static TokenDTO tokenDTO;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private PasswordEncoder encoder;
+
     @BeforeAll
-    static void setUp() {
+    void setUp() {
         objectMapper = new YAMLMapper();
         bookDTO = new BookDTO();
+
+        if (userRepository.findByUsername("kvilas").isEmpty()) {
+            var user = new User();
+
+            user.setUsername("kvilas");
+            user.setPassword(encoder.encode("123"));
+            user.setRole(UserRole.COORDINATOR);
+
+            userRepository.save(user);
+        }
+    }
+
+    @Order(0)
+    @Test
+    void login() throws JsonProcessingException {
+        AuthenticationDTO credentials = new AuthenticationDTO("kvilas", "123");
+
+         var content = given()
+                .basePath("auth/login")
+                .port(TestConfigs.SERVER_PORT)
+                .contentType(MediaType.APPLICATION_YAML_VALUE)
+                .accept(MediaType.APPLICATION_YAML_VALUE)
+                .body(credentials, objectMapper)
+                .when()
+                .post()
+                .then()
+                .statusCode(200)
+                .extract()
+                .body()
+                .as(TokenDTO.class, objectMapper);
+
+        specification = new RequestSpecBuilder()
+                .addHeader(TestConfigs.HEADER_PARAM_ORIGIN, TestConfigs.AUTHORIZED_ORIGIN)
+                .addHeader(TestConfigs.HEADER_PARAM_AUTHORIZATION, "Bearer " + tokenDTO.getAccessToken())
+                .setBasePath("/books")
+                .setPort(TestConfigs.SERVER_PORT)
+                .addFilter(new RequestLoggingFilter(LogDetail.ALL))
+                .addFilter(new ResponseLoggingFilter(LogDetail.ALL))
+                .build();
+
+        assertNotNull(tokenDTO.getAccessToken());
+        assertNotNull(tokenDTO.getRefreshToken());
     }
 
     @Test
     @Order(1)
     void create() throws JsonProcessingException {
         mockBook();
-
-        specification = new RequestSpecBuilder()
-                .addHeader(TestConfigs.HEADER_PARAM_ORIGIN, TestConfigs.AUTHORIZED_ORIGIN)
-                .setBasePath("/books")
-                .setPort(TestConfigs.SERVER_PORT)
-                .addFilter(new RequestLoggingFilter(LogDetail.ALL))
-                .addFilter(new ResponseLoggingFilter(LogDetail.ALL))
-                .build();
 
         var createdDTO = given().config(
                         RestAssuredConfig.config().encoderConfig(

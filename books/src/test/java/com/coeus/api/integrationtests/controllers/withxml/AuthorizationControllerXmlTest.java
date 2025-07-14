@@ -1,20 +1,21 @@
-package com.coeus.api.integrationtests.controllers.withjson;
+package com.coeus.api.integrationtests.controllers.withxml;
 
 import com.coeus.api.config.TestConfigs;
 import com.coeus.api.integrationtests.dto.AuthenticationDTO;
+import com.coeus.api.integrationtests.dto.RefreshTokenDTO;
 import com.coeus.api.integrationtests.dto.TokenDTO;
 import com.coeus.api.integrationtests.testcontainers.AbstractIntegrationTest;
 import com.coeus.api.models.security.user.User;
 import com.coeus.api.models.security.user.UserRole;
 import com.coeus.api.repositories.security.UserRepository;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -22,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-class AuthorizationControllerJsonTest extends AbstractIntegrationTest {
+class AuthorizationControllerXmlTest extends AbstractIntegrationTest {
 
     @Autowired
     private UserRepository userRepository;
@@ -32,8 +33,13 @@ class AuthorizationControllerJsonTest extends AbstractIntegrationTest {
 
     private static TokenDTO tokenDTO;
 
+    private static XmlMapper objectMapper;
+
     @BeforeAll
     void setUp() {
+        objectMapper = new XmlMapper();
+        objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+
         if (userRepository.findByUsername("kvilas").isEmpty()) {
             var user = new User();
 
@@ -47,13 +53,14 @@ class AuthorizationControllerJsonTest extends AbstractIntegrationTest {
 
     @Order(1)
     @Test
-    void login() {
+    void login() throws JsonProcessingException {
         AuthenticationDTO credentials = new AuthenticationDTO("kvilas", "123");
 
-         tokenDTO = given()
+         var content = given()
                 .basePath("auth/login")
                 .port(TestConfigs.SERVER_PORT)
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .contentType(MediaType.APPLICATION_XML_VALUE)
+                .accept(MediaType.APPLICATION_XML_VALUE)
                 .body(credentials)
                 .when()
                 .post()
@@ -61,7 +68,9 @@ class AuthorizationControllerJsonTest extends AbstractIntegrationTest {
                 .statusCode(200)
                 .extract()
                 .body()
-                .as(TokenDTO.class);
+                .asString();
+
+        tokenDTO = objectMapper.readValue(content, TokenDTO.class);
 
         assertNotNull(tokenDTO.getAccessToken());
         assertNotNull(tokenDTO.getRefreshToken());
@@ -69,15 +78,14 @@ class AuthorizationControllerJsonTest extends AbstractIntegrationTest {
 
     @Order(2)
     @Test
-    void refreshToken() {
+    void refreshToken() throws JsonProcessingException {
+        RefreshTokenDTO request = new RefreshTokenDTO(tokenDTO.getRefreshToken());
 
-        Map<String, String> request = new HashMap<>();
-        request.put("refreshToken", tokenDTO.getRefreshToken());
-
-        TokenDTO refreshedToken = given()
+        var content = given()
                 .basePath("auth/refresh-token")
                 .port(TestConfigs.SERVER_PORT)
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .contentType(MediaType.APPLICATION_XML_VALUE)
+                .accept(MediaType.APPLICATION_XML_VALUE)
                 .body(request)
                 .when()
                 .post()
@@ -85,9 +93,11 @@ class AuthorizationControllerJsonTest extends AbstractIntegrationTest {
                 .statusCode(200)
                 .extract()
                 .body()
-                .as(TokenDTO.class);
+                .asString();
 
-        assertNotNull(refreshedToken);
-        assertNotNull(refreshedToken.getRefreshToken());
+        TokenDTO refreshed = objectMapper.readValue(content, TokenDTO.class);
+
+        assertNotNull(refreshed);
+        assertNotNull(refreshed.getRefreshToken());
     }
 }
