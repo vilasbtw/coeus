@@ -244,7 +244,6 @@ class BookServiceTest {
     }
 
     @Test
-    @Disabled("still under development")
     void findAll() {
         List<Book> list = input.mookBookEntities();
         when(repository.findAll()).thenReturn(list);

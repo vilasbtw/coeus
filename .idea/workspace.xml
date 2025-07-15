@@ -5,26 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f0b0d76f-3962-4f49-841e-77f001e9ccb1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/withxml/AuthorizationControllerXmlTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/withyaml/AuthorizationControllerYamlTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/dto/RefreshTokenDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/controllers/docs/AuthorizationControllerDocs.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/controllers/docs/AuthorizationControllerDocs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/controllers/security/AuthorizationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/controllers/security/AuthorizationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/models/dtos/security/AuthTokensDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/models/dtos/security/RefreshTokenDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/models/dtos/security/RefreshTokenDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/cors/withjson/StudentControllerCorsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/cors/withjson/StudentControllerCorsTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/withjson/AuthorizationControllerJsonTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/withjson/AuthorizationControllerJsonTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/withjson/BookControllerJsonTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/withjson/BookControllerJsonTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/withjson/EmployeeControllerJsonTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/withjson/EmployeeControllerJsonTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/withjson/StudentControllerJsonTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/withjson/StudentControllerJsonTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/withxml/BookControllerXmlTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/withxml/BookControllerXmlTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/withxml/EmployeeControllerXmlTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/withxml/EmployeeControllerXmlTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/withxml/StudentControllerXmlTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/withxml/StudentControllerXmlTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/withyaml/BookControllerYamlTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/withyaml/BookControllerYamlTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/withyaml/EmployeeControllerYamlTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/withyaml/EmployeeControllerYamlTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/withyaml/StudentControllerYamlTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/withyaml/StudentControllerYamlTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/unittests/services/BookServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/unittests/services/BookServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/unittests/services/EmployeeServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/unittests/services/EmployeeServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/unittests/services/StudentServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/unittests/services/StudentServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,37 +55,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.CoeusApplication.executor": "Run",
-    "JUnit.All in books (1).executor": "Run",
-    "JUnit.All in books.executor": "Run",
-    "JUnit.AuthorizationControllerJsonTest.executor": "Run",
-    "JUnit.AuthorizationControllerXmlTest.executor": "Run",
-    "JUnit.AuthorizationControllerYamlTest.executor": "Run",
-    "JUnit.BookControllerJsonTest.executor": "Run",
-    "JUnit.BookControllerXmlTest.executor": "Run",
-    "JUnit.EmployeeControllerJsonTest.create.executor": "Run",
-    "JUnit.EmployeeControllerJsonTest.executor": "Run",
-    "JUnit.StudentControllerCorsTest.executor": "Run",
-    "JUnit.StudentControllerJsonTest.executor": "Run",
-    "JUnit.StudentControllerYamlTest.executor": "Run",
-    "JUnit.StudentRepositoryTest.executor": "Run",
-    "JUnit.StudentServiceTest.executor": "Run",
-    "JUnit.SwaggerIntegrationTest.executor": "Run",
-    "JUnit.java in books.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "auth",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Kaique/Documents/Code/coeus",
-    "settings.editor.selected.configurable": "Docker"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.CoeusApplication.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.All in books (1).executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.All in books.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AuthorizationControllerJsonTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AuthorizationControllerXmlTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AuthorizationControllerYamlTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BookControllerJsonTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BookControllerXmlTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.EmployeeControllerJsonTest.create.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.EmployeeControllerJsonTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StudentControllerCorsTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StudentControllerJsonTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StudentControllerYamlTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StudentRepositoryTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StudentServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SwaggerIntegrationTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.java in books.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;auth&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Kaique/Documents/Code/coeus&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;Docker&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.coeus.api.models.dtos" />

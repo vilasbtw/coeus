@@ -240,7 +240,6 @@ class StudentServiceTest {
     }
 
     @Test
-    @Disabled("still under development")
     void findAll() {
         List<Student> list = input.mookStudentEntities();
         when(repository.findAll()).thenReturn(list);

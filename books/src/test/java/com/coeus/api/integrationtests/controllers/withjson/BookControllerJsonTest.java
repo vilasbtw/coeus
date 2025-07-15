@@ -102,14 +102,6 @@ class BookControllerJsonTest extends AbstractIntegrationTest {
     void create() throws JsonProcessingException {
         mockBook();
 
-        specification = new RequestSpecBuilder()
-                .addHeader(TestConfigs.HEADER_PARAM_ORIGIN, TestConfigs.AUTHORIZED_ORIGIN)
-                .setBasePath("/books")
-                .setPort(TestConfigs.SERVER_PORT)
-                .addFilter(new RequestLoggingFilter(LogDetail.ALL))
-                .addFilter(new ResponseLoggingFilter(LogDetail.ALL))
-                .build();
-
         var content = given(specification)
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .body(bookDTO)

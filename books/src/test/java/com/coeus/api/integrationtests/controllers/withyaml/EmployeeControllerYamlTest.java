@@ -70,7 +70,11 @@ class EmployeeControllerYamlTest extends AbstractIntegrationTest {
     void login() throws JsonProcessingException {
         AuthenticationDTO credentials = new AuthenticationDTO("kvilas", "123");
 
-         var content = given()
+        tokenDTO = given()
+                .config(RestAssuredConfig.config().encoderConfig(
+                        EncoderConfig.encoderConfig()
+                                .encodeContentTypeAs(MediaType.APPLICATION_YAML_VALUE, ContentType.TEXT))
+                )
                 .basePath("auth/login")
                 .port(TestConfigs.SERVER_PORT)
                 .contentType(MediaType.APPLICATION_YAML_VALUE)

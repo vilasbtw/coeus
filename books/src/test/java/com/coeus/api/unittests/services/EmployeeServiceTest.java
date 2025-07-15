@@ -237,7 +237,6 @@ class EmployeeServiceTest {
     }
 
     @Test
-    @Disabled("still under development")
     void findAll() {
         List<Employee> list = input.mockEmployeeEntities();
         when(repository.findAll()).thenReturn(list);

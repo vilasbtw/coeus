@@ -100,14 +100,6 @@ class EmployeeControllerJsonTest extends AbstractIntegrationTest {
     void create() throws JsonProcessingException {
         mockEmployee();
 
-        specification = new RequestSpecBuilder()
-                .addHeader(TestConfigs.HEADER_PARAM_ORIGIN, TestConfigs.AUTHORIZED_ORIGIN)
-                .setBasePath("/employees")
-                .setPort(TestConfigs.SERVER_PORT)
-                .addFilter(new RequestLoggingFilter(LogDetail.ALL))
-                .addFilter(new ResponseLoggingFilter(LogDetail.ALL))
-                .build();
-
         var content = given(specification)
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .body(employeeDTO)
