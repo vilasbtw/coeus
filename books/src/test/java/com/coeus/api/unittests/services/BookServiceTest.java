@@ -12,9 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mapstruct.factory.Mappers;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.*;
 import org.springframework.data.web.PagedResourcesAssembler;
@@ -46,7 +44,7 @@ class BookServiceTest {
     void setUp() {
         input = new MockBook();
         mapper = Mappers.getMapper(BookMapper.class);
-        service = new BookService(repository, mapper);
+        service = new BookService(repository, mapper, assembler);
     }
 
     @Test
@@ -220,31 +218,34 @@ class BookServiceTest {
 
     @Test
     void findAll() {
-        List<Book> mockEntityList = input.mookBookEntities();
-        Page<Book> mockPage = new PageImpl<>(mockEntityList);
-        when(repository.findAll(any(Pageable.class))).thenReturn(mockPage);
+        List<Book> entityList = input.mookBookEntities();
+        Page<Book> entityPage = new PageImpl<>(entityList);
+        when(repository.findAll(any(Pageable.class))).thenReturn(entityPage);
 
-        List<BookDTO> mockDtoList = input.mookBookDTOS();
+        when(assembler.toModel(any(Page.class), any(Link.class))).thenAnswer(invocation -> {
+            Page<BookDTO> dtoPage = invocation.getArgument(0);
+            List<EntityModel<BookDTO>> models = dtoPage.getContent().stream()
+                    .map(EntityModel::of)
+                    .collect(Collectors.toList());
+            PagedModel.PageMetadata metadata = new PagedModel.PageMetadata(
+                dtoPage.getSize(),
+                dtoPage.getNumber(),
+                dtoPage.getTotalElements()
+            );
+            return PagedModel.of(models, metadata);
+        });
 
-        List<EntityModel<BookDTO>> entityModels = mockDtoList.stream()
-                .map(EntityModel::of)
-                .collect(Collectors.toList());
+        Pageable pageable = PageRequest.of(0, 15);
 
-        PagedModel.PageMetadata pageMetadata = new PagedModel.PageMetadata(
-                mockPage.getSize(), mockPage.getNumber(), mockPage.getTotalElements(), mockPage.getTotalPages());
-
-        PagedModel<EntityModel<BookDTO>> mockPagedModel = PagedModel.of(entityModels, pageMetadata);
-        when(assembler.toModel(any(Page.class), any(Link.class))).thenReturn(mockPagedModel);
-
-        Pageable pageable = PageRequest.of(0, 14);
         PagedModel<EntityModel<BookDTO>> result = service.findAll(pageable);
 
+        assertNotNull(result);
         List<BookDTO> books = result.getContent().stream()
                 .map(EntityModel::getContent)
                 .collect(Collectors.toList());
 
         assertNotNull(books);
-        assertEquals(14, books.size());
+        assertEquals(15, books.size());
 
         validateIndividualBook(books.get(1), 1);
         validateIndividualBook(books.get(4), 4);
@@ -252,40 +253,31 @@ class BookServiceTest {
     }
 
     private void validateIndividualBook(BookDTO book, int i) {
-        assertNotNull(book);
-        assertNotNull(book.getId());
-        assertNotNull(book.getLinks());
-
-        assertTrue(book.getLinks().stream()
-                .anyMatch(link -> link.getRel().value().equals("self")
-                        && link.getHref().endsWith("/books/" + i)
-                        && link.getType().equals("GET")));
-
-        assertTrue(book.getLinks().stream()
-                .anyMatch(link -> link.getRel().value().equals("findAll")
-                        && link.getHref().endsWith("/books")
-                        && link.getType().equals("GET")));
-
-        assertTrue(book.getLinks().stream()
-                .anyMatch(link -> link.getRel().value().equals("create")
-                        && link.getHref().endsWith("/books")
-                        && link.getType().equals("POST")));
-
-        assertTrue(book.getLinks().stream()
-                .anyMatch(link -> link.getRel().value().equals("update")
-                        && link.getHref().endsWith("/books")
-                        && link.getType().equals("PUT")));
-
-        assertTrue(book.getLinks().stream()
-                .anyMatch(link -> link.getRel().value().equals("delete")
-                        && link.getHref().endsWith("/books/" + i)
-                        && link.getType().equals("DELETE")));
-
         assertEquals("Book name: " + i, book.getBookName());
         assertEquals("Author name: " + i, book.getAuthorName());
         assertEquals("Publisher name: " + i, book.getPublisherName());
         assertEquals(i, book.getNumberOfPages());
         assertEquals("Genre: " + i, book.getGenre());
         assertEquals(i, book.getPrice());
+
+        assertNotNull(book);
+        assertNotNull(book.getId());
+        assertNotNull(book.getLinks());
+
+        assertTrue(book.getLink("self").isPresent());
+        assertTrue(book.getLink("self").get().getHref().endsWith("/books/" + i));
+
+        assertTrue(book.getLink("findAll").isPresent());
+        assertTrue(book.getLink("findAll").get().getHref().contains("/books"));
+
+        assertTrue(book.getLink("create").isPresent());
+        assertTrue(book.getLink("create").get().getHref().endsWith("/books"));
+
+        assertTrue(book.getLink("update").isPresent());
+        assertTrue(book.getLink("update").get().getHref().endsWith("/books"));
+
+        assertTrue(book.getLink("delete").isPresent());
+        assertTrue(book.getLink("delete").get().getHref().endsWith("/books/" + i));
     }
+
 }

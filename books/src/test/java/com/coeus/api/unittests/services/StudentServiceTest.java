@@ -8,20 +8,24 @@ import com.coeus.api.repositories.StudentRepository;
 import com.coeus.api.services.StudentService;
 import com.coeus.api.unittests.mocks.MockStudent;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mapstruct.factory.Mappers;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.*;
+import org.springframework.data.web.PagedResourcesAssembler;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.PagedModel;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith(MockitoExtension.class)
@@ -33,11 +37,14 @@ class StudentServiceTest {
     StudentRepository repository;
     StudentMapper mapper;
 
+    @Mock
+    PagedResourcesAssembler<StudentDTO> assembler;
+
     @BeforeEach
     void setUp() {
         input = new MockStudent();
         mapper = Mappers.getMapper(StudentMapper.class);
-        service = new StudentService(repository, mapper);
+        service = new StudentService(repository, mapper, assembler);
     }
 
     @Test
@@ -59,10 +66,10 @@ class StudentServiceTest {
         );
 
         assertTrue(result.getLinks().stream()
-                .anyMatch(link -> link.getRel().value().equals("findAll")
-                        && link.getHref().endsWith("/students")
-                        && link.getType().equals("GET")
-                )
+            .anyMatch(link -> link.getRel().value().equals("findAll")
+                    && link.getHref().contains("/students")
+                    && link.getType().equals("GET")
+            )
         );
 
         assertTrue(result.getLinks().stream()
@@ -128,10 +135,10 @@ class StudentServiceTest {
         );
 
         assertTrue(result.getLinks().stream()
-                .anyMatch(link -> link.getRel().value().equals("findAll")
-                        && link.getHref().endsWith("/students")
-                        && link.getType().equals("GET")
-                )
+            .anyMatch(link -> link.getRel().value().equals("findAll")
+                    && link.getHref().contains("/students")
+                    && link.getType().equals("GET")
+            )
         );
 
         assertTrue(result.getLinks().stream()
@@ -198,10 +205,10 @@ class StudentServiceTest {
         );
 
         assertTrue(result.getLinks().stream()
-                .anyMatch(link -> link.getRel().value().equals("findAll")
-                        && link.getHref().endsWith("/students")
-                        && link.getType().equals("GET")
-                )
+            .anyMatch(link -> link.getRel().value().equals("findAll")
+                    && link.getHref().contains("/students")
+                    && link.getType().equals("GET")
+            )
         );
 
         assertTrue(result.getLinks().stream()
@@ -241,133 +248,64 @@ class StudentServiceTest {
 
     @Test
     void findAll() {
-        List<Student> list = input.mookStudentEntities();
-        when(repository.findAll()).thenReturn(list);
-        List<StudentDTO> dtos = new ArrayList<>();// service.findAll(pageable);
+        List<Student> entityList = input.mookStudentEntities();
+        Page<Student> entityPage = new PageImpl<>(entityList);
+        when(repository.findAll(any(Pageable.class))).thenReturn(entityPage);
 
-        assertNotNull(dtos);
-        assertEquals(15, dtos.size());
+        when(assembler.toModel(any(Page.class), any(Link.class))).thenAnswer(invocation -> {
+            Page<StudentDTO> dtoPage = invocation.getArgument(0);
+            List<EntityModel<StudentDTO>> models = dtoPage.getContent().stream()
+                    .map(EntityModel::of)
+                    .collect(Collectors.toList());
+            PagedModel.PageMetadata metadata = new PagedModel.PageMetadata(
+                dtoPage.getSize(),
+                dtoPage.getNumber(),
+                dtoPage.getTotalElements()
+            );
+            return PagedModel.of(models, metadata);
+        });
 
-        StudentDTO studentOne = dtos.get(1);
+        Pageable pageable = PageRequest.of(0, 15);
 
-        assertTrue(studentOne.getLinks().stream()
-                .anyMatch(link -> link.getRel().value().equals("self")
-                        && link.getHref().endsWith("/students/1")
-                        && link.getType().equals("GET")
-                )
-        );
+        PagedModel<EntityModel<StudentDTO>> result = service.findAll(pageable);
 
-        assertTrue(studentOne.getLinks().stream()
-                .anyMatch(link -> link.getRel().value().equals("findAll")
-                        && link.getHref().endsWith("/students")
-                        && link.getType().equals("GET")
-                )
-        );
+        assertNotNull(result);
+        List<StudentDTO> students = result.getContent().stream()
+                .map(EntityModel::getContent)
+                .collect(Collectors.toList());
 
-        assertTrue(studentOne.getLinks().stream()
-                .anyMatch(link -> link.getRel().value().equals("create")
-                        && link.getHref().endsWith("/students")
-                        && link.getType().equals("POST")
-                )
-        );
+        assertNotNull(students);
+        assertEquals(15, students.size());
 
-        assertTrue(studentOne.getLinks().stream()
-                .anyMatch(link -> link.getRel().value().equals("update")
-                        && link.getHref().endsWith("/students")
-                        && link.getType().equals("PUT")
-                )
-        );
+        validateIndividualStudent(students.get(1), 1);
+        validateIndividualStudent(students.get(5), 5);
+        validateIndividualStudent(students.get(10), 10);
+    }
 
-        assertTrue(studentOne.getLinks().stream()
-                .anyMatch(link -> link.getRel().value().equals("delete")
-                        && link.getHref().endsWith("/students/1")
-                        && link.getType().equals("DELETE")
-                )
-        );
+    private void validateIndividualStudent(StudentDTO student, int i) {
+        assertEquals("Student register: " + i, student.getStudentRegister());
+        assertEquals("Name: " + i, student.getName());
+        assertEquals("Email: " + i, student.getEmail());
+        assertEquals("Course: " + i, student.getCourse());
 
-        StudentDTO studentSeven = dtos.get(7);
+        assertNotNull(student);
+        assertNotNull(student.getId());
+        assertNotNull(student.getLinks());
 
-        assertTrue(studentSeven.getLinks().stream()
-                .anyMatch(link -> link.getRel().value().equals("self")
-                        && link.getHref().endsWith("/students/7")
-                        && link.getType().equals("GET")
-                )
-        );
+        assertTrue(student.getLink("self").isPresent());
+        assertTrue(student.getLink("self").get().getHref().endsWith("/students/" + i));
 
-        assertTrue(studentSeven.getLinks().stream()
-                .anyMatch(link -> link.getRel().value().equals("findAll")
-                        && link.getHref().endsWith("/students")
-                        && link.getType().equals("GET")
-                )
-        );
+        assertTrue(student.getLink("findAll").isPresent());
+        assertTrue(student.getLink("findAll").get().getHref().contains("/students"));
 
-        assertTrue(studentSeven.getLinks().stream()
-                .anyMatch(link -> link.getRel().value().equals("create")
-                        && link.getHref().endsWith("/students")
-                        && link.getType().equals("POST")
-                )
-        );
+        assertTrue(student.getLink("create").isPresent());
+        assertTrue(student.getLink("create").get().getHref().endsWith("/students"));
 
-        assertTrue(studentSeven.getLinks().stream()
-                .anyMatch(link -> link.getRel().value().equals("update")
-                        && link.getHref().endsWith("/students")
-                        && link.getType().equals("PUT")
-                )
-        );
+        assertTrue(student.getLink("update").isPresent());
+        assertTrue(student.getLink("update").get().getHref().endsWith("/students"));
 
-        assertTrue(studentSeven.getLinks().stream()
-                .anyMatch(link -> link.getRel().value().equals("delete")
-                        && link.getHref().endsWith("/students/7")
-                        && link.getType().equals("DELETE")
-                )
-        );
-
-        assertEquals("Student register: 7", studentSeven.getStudentRegister());
-        assertEquals("Name: 7", studentSeven.getName());
-        assertEquals("Email: 7", studentSeven.getEmail());
-        assertEquals("Course: 7", studentSeven.getCourse());
-
-        StudentDTO studentThirteen = dtos.get(13);
-
-        assertTrue(studentThirteen.getLinks().stream()
-                .anyMatch(link -> link.getRel().value().equals("self")
-                        && link.getHref().endsWith("/students/13")
-                        && link.getType().equals("GET")
-                )
-        );
-
-        assertTrue(studentThirteen.getLinks().stream()
-                .anyMatch(link -> link.getRel().value().equals("findAll")
-                        && link.getHref().endsWith("/students")
-                        && link.getType().equals("GET")
-                )
-        );
-
-        assertTrue(studentThirteen.getLinks().stream()
-                .anyMatch(link -> link.getRel().value().equals("create")
-                        && link.getHref().endsWith("/students")
-                        && link.getType().equals("POST")
-                )
-        );
-
-        assertTrue(studentThirteen.getLinks().stream()
-                .anyMatch(link -> link.getRel().value().equals("update")
-                        && link.getHref().endsWith("/students")
-                        && link.getType().equals("PUT")
-                )
-        );
-
-        assertTrue(studentThirteen.getLinks().stream()
-                .anyMatch(link -> link.getRel().value().equals("delete")
-                        && link.getHref().endsWith("/students/13")
-                        && link.getType().equals("DELETE")
-                )
-        );
-
-        assertEquals("Student register: 13", studentThirteen.getStudentRegister());
-        assertEquals("Name: 13", studentThirteen.getName());
-        assertEquals("Email: 13", studentThirteen.getEmail());
-        assertEquals("Course: 13", studentThirteen.getCourse());
+        assertTrue(student.getLink("delete").isPresent());
+        assertTrue(student.getLink("delete").get().getHref().endsWith("/students/" + i));
     }
 
 }

@@ -4,6 +4,7 @@ import com.coeus.api.controllers.StudentController;
 import com.coeus.api.exceptions.RequiredObjectIsNullException;
 import com.coeus.api.exceptions.ResourceNotFoundException;
 import com.coeus.api.models.Student;
+import com.coeus.api.models.dtos.BookDTO;
 import com.coeus.api.models.dtos.StudentDTO;
 import com.coeus.api.models.mapper.StudentMapper;
 import com.coeus.api.repositories.StudentRepository;
@@ -27,13 +28,13 @@ public class StudentService {
     private final StudentMapper mapper;
 
     // converts paginated StudentDTOs into a response with HATEOAS links, e.g.: "next", "previous", "self", "last"...
-    @Autowired
     PagedResourcesAssembler<StudentDTO> assembler;
 
     @Autowired
-    public StudentService(StudentRepository repository, StudentMapper mapper) {
+    public StudentService(StudentRepository repository, StudentMapper mapper, PagedResourcesAssembler<StudentDTO> assembler) {
         this.repository = repository;
         this.mapper = mapper;
+        this.assembler = assembler;
     }
 
     public StudentDTO create(StudentDTO studentDTO) {

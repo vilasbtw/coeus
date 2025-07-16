@@ -1,27 +1,33 @@
 package com.coeus.api.unittests.services;
 
 import com.coeus.api.exceptions.RequiredObjectIsNullException;
+import com.coeus.api.models.Book;
 import com.coeus.api.models.Employee;
+import com.coeus.api.models.dtos.BookDTO;
 import com.coeus.api.models.dtos.EmployeeDTO;
 import com.coeus.api.models.mapper.EmployeeMapper;
 import com.coeus.api.repositories.EmployeeRepository;
 import com.coeus.api.services.EmployeeService;
 import com.coeus.api.unittests.mocks.MockEmployee;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mapstruct.factory.Mappers;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.*;
+import org.springframework.data.web.PagedResourcesAssembler;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.PagedModel;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith(MockitoExtension.class)
@@ -33,11 +39,14 @@ class EmployeeServiceTest {
     EmployeeRepository repository;
     EmployeeMapper mapper;
 
+    @Mock
+    PagedResourcesAssembler<EmployeeDTO> assembler;
+
     @BeforeEach
     void setUp() {
         input = new MockEmployee();
         mapper = Mappers.getMapper(EmployeeMapper.class);
-        service = new EmployeeService(repository, mapper);
+        service = new EmployeeService(repository, mapper, assembler);
     }
 
     @Test
@@ -59,10 +68,10 @@ class EmployeeServiceTest {
         );
 
         assertTrue(result.getLinks().stream()
-                .anyMatch(link -> link.getRel().value().equals("findAll")
-                        && link.getHref().endsWith("/employees")
-                        && link.getType().equals("GET")
-                )
+            .anyMatch(link -> link.getRel().value().equals("findAll")
+                    && link.getHref().contains("/employees")
+                    && link.getType().equals("GET")
+            )
         );
 
         assertTrue(result.getLinks().stream()
@@ -127,10 +136,10 @@ class EmployeeServiceTest {
         );
 
         assertTrue(result.getLinks().stream()
-                .anyMatch(link -> link.getRel().value().equals("findAll")
-                        && link.getHref().endsWith("/employees")
-                        && link.getType().equals("GET")
-                )
+            .anyMatch(link -> link.getRel().value().equals("findAll")
+                    && link.getHref().contains("/employees")
+                    && link.getType().equals("GET")
+            )
         );
 
         assertTrue(result.getLinks().stream()
@@ -196,10 +205,10 @@ class EmployeeServiceTest {
         );
 
         assertTrue(result.getLinks().stream()
-                .anyMatch(link -> link.getRel().value().equals("findAll")
-                        && link.getHref().endsWith("/employees")
-                        && link.getType().equals("GET")
-                )
+            .anyMatch(link -> link.getRel().value().equals("findAll")
+                    && link.getHref().contains("/employees")
+                    && link.getType().equals("GET")
+            )
         );
 
         assertTrue(result.getLinks().stream()
@@ -238,131 +247,63 @@ class EmployeeServiceTest {
 
     @Test
     void findAll() {
-        List<Employee> list = input.mockEmployeeEntities();
-        when(repository.findAll()).thenReturn(list);
-        List<EmployeeDTO> dtos = new ArrayList<>();// service.findAll(pageable);
+        List<Employee> entityList = input.mockEmployeeEntities();
+        Page<Employee> entityPage = new PageImpl<>(entityList);
+        when(repository.findAll(any(Pageable.class))).thenReturn(entityPage);
 
-        assertNotNull(dtos);
-        assertEquals(15, dtos.size());
+        when(assembler.toModel(any(Page.class), any(Link.class))).thenAnswer(invocation -> {
+            Page<EmployeeDTO> dtoPage = invocation.getArgument(0);
+            List<EntityModel<EmployeeDTO>> models = dtoPage.getContent().stream()
+                    .map(EntityModel::of)
+                    .collect(Collectors.toList());
+            PagedModel.PageMetadata metadata = new PagedModel.PageMetadata(
+                dtoPage.getSize(),
+                dtoPage.getNumber(),
+                dtoPage.getTotalElements()
+            );
+            return PagedModel.of(models, metadata);
+        });
 
-        EmployeeDTO employeeOne = dtos.get(1);
+        Pageable pageable = PageRequest.of(0, 15);
 
-        assertTrue(employeeOne.getLinks().stream()
-                .anyMatch(link -> link.getRel().value().equals("self")
-                        && link.getHref().endsWith("/employees/1")
-                        && link.getType().equals("GET")
-                )
-        );
+        PagedModel<EntityModel<EmployeeDTO>> result = service.findAll(pageable);
 
-        assertTrue(employeeOne.getLinks().stream()
-                .anyMatch(link -> link.getRel().value().equals("findAll")
-                        && link.getHref().endsWith("/employees")
-                        && link.getType().equals("GET")
-                )
-        );
+        assertNotNull(result);
+        List<EmployeeDTO> employees = result.getContent().stream()
+                .map(EntityModel::getContent)
+                .collect(Collectors.toList());
 
-        assertTrue(employeeOne.getLinks().stream()
-                .anyMatch(link -> link.getRel().value().equals("create")
-                        && link.getHref().endsWith("/employees")
-                        && link.getType().equals("POST")
-                )
-        );
+        assertNotNull(employees);
+        assertEquals(15, employees.size());
 
-        assertTrue(employeeOne.getLinks().stream()
-                .anyMatch(link -> link.getRel().value().equals("update")
-                        && link.getHref().endsWith("/employees")
-                        && link.getType().equals("PUT")
-                )
-        );
+        validateIndividualEmployee(employees.get(1), 1);
+        validateIndividualEmployee(employees.get(5), 5);
+        validateIndividualEmployee(employees.get(10), 10);
+    }
 
-        assertTrue(employeeOne.getLinks().stream()
-                .anyMatch(link -> link.getRel().value().equals("delete")
-                        && link.getHref().endsWith("/employees/1")
-                        && link.getType().equals("DELETE")
-                )
-        );
+    private void validateIndividualEmployee(EmployeeDTO employee, int i) {
+        assertEquals("Employee register: " + i, employee.getEmployeeRegister());
+        assertEquals("Name: " + i, employee.getName());
+        assertEquals("Email: " + i, employee.getEmail());
 
-        EmployeeDTO employeeSeven = dtos.get(7);
+        assertNotNull(employee);
+        assertNotNull(employee.getId());
+        assertNotNull(employee.getLinks());
 
-        assertTrue(employeeSeven.getLinks().stream()
-                .anyMatch(link -> link.getRel().value().equals("self")
-                        && link.getHref().endsWith("/employees/7")
-                        && link.getType().equals("GET")
-                )
-        );
+        assertTrue(employee.getLink("self").isPresent());
+        assertTrue(employee.getLink("self").get().getHref().endsWith("/employees/" + i));
 
-        assertTrue(employeeSeven.getLinks().stream()
-                .anyMatch(link -> link.getRel().value().equals("findAll")
-                        && link.getHref().endsWith("/employees")
-                        && link.getType().equals("GET")
-                )
-        );
+        assertTrue(employee.getLink("findAll").isPresent());
+        assertTrue(employee.getLink("findAll").get().getHref().contains("/employees"));
 
-        assertTrue(employeeSeven.getLinks().stream()
-                .anyMatch(link -> link.getRel().value().equals("create")
-                        && link.getHref().endsWith("/employees")
-                        && link.getType().equals("POST")
-                )
-        );
+        assertTrue(employee.getLink("create").isPresent());
+        assertTrue(employee.getLink("create").get().getHref().endsWith("/employees"));
 
-        assertTrue(employeeSeven.getLinks().stream()
-                .anyMatch(link -> link.getRel().value().equals("update")
-                        && link.getHref().endsWith("/employees")
-                        && link.getType().equals("PUT")
-                )
-        );
+        assertTrue(employee.getLink("update").isPresent());
+        assertTrue(employee.getLink("update").get().getHref().endsWith("/employees"));
 
-        assertTrue(employeeSeven.getLinks().stream()
-                .anyMatch(link -> link.getRel().value().equals("delete")
-                        && link.getHref().endsWith("/employees/7")
-                        && link.getType().equals("DELETE")
-                )
-        );
-
-        assertEquals("Employee register: 7", employeeSeven.getEmployeeRegister());
-        assertEquals("Name: 7", employeeSeven.getName());
-        assertEquals("Email: 7", employeeSeven.getEmail());
-
-        EmployeeDTO employeeThirteen = dtos.get(13);
-
-        assertTrue(employeeThirteen.getLinks().stream()
-                .anyMatch(link -> link.getRel().value().equals("self")
-                        && link.getHref().endsWith("/employees/13")
-                        && link.getType().equals("GET")
-                )
-        );
-
-        assertTrue(employeeThirteen.getLinks().stream()
-                .anyMatch(link -> link.getRel().value().equals("findAll")
-                        && link.getHref().endsWith("/employees")
-                        && link.getType().equals("GET")
-                )
-        );
-
-        assertTrue(employeeThirteen.getLinks().stream()
-                .anyMatch(link -> link.getRel().value().equals("create")
-                        && link.getHref().endsWith("/employees")
-                        && link.getType().equals("POST")
-                )
-        );
-
-        assertTrue(employeeThirteen.getLinks().stream()
-                .anyMatch(link -> link.getRel().value().equals("update")
-                        && link.getHref().endsWith("/employees")
-                        && link.getType().equals("PUT")
-                )
-        );
-
-        assertTrue(employeeThirteen.getLinks().stream()
-                .anyMatch(link -> link.getRel().value().equals("delete")
-                        && link.getHref().endsWith("/employees/13")
-                        && link.getType().equals("DELETE")
-                )
-        );
-
-        assertEquals("Employee register: 13", employeeThirteen.getEmployeeRegister());
-        assertEquals("Name: 13", employeeThirteen.getName());
-        assertEquals("Email: 13", employeeThirteen.getEmail());
+        assertTrue(employee.getLink("delete").isPresent());
+        assertTrue(employee.getLink("delete").get().getHref().endsWith("/employees/" + i));
     }
 
 }

@@ -26,13 +26,13 @@ public class EmployeeService {
     private final EmployeeMapper mapper;
 
     // converts paginated EmployeeDTOs into a response with HATEOAS links, e.g.: "next", "previous", "self", "last"...
-    @Autowired
     PagedResourcesAssembler<EmployeeDTO> assembler;
 
     @Autowired
-    public EmployeeService(EmployeeRepository repository, EmployeeMapper mapper) {
+    public EmployeeService(EmployeeRepository repository, EmployeeMapper mapper, PagedResourcesAssembler<EmployeeDTO> assembler) {
         this.repository = repository;
         this.mapper = mapper;
+        this.assembler = assembler;
     }
 
     public EmployeeDTO create(EmployeeDTO employeeDTO) {

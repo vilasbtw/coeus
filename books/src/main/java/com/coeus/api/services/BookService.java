@@ -26,13 +26,13 @@ public class BookService {
     private final BookMapper mapper;
 
     // converts paginated BookDTOs into a response with HATEOAS links, e.g.: "next", "previous", "self", "last"...
-    @Autowired
     PagedResourcesAssembler<BookDTO> assembler;
 
     @Autowired
-    public BookService(BookRepository repository, BookMapper mapper) {
+    public BookService(BookRepository repository, BookMapper mapper, PagedResourcesAssembler<BookDTO> assembler) {
         this.repository = repository;
         this.mapper = mapper;
+        this.assembler = assembler;
     }
 
     // Repository only works with entity classes, so:
