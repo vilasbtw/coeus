@@ -6,12 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f0b0d76f-3962-4f49-841e-77f001e9ccb1" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/services/BookService.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/services/BookService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/services/EmployeeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/services/EmployeeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/services/StudentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/services/StudentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/unittests/services/BookServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/unittests/services/BookServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/unittests/services/EmployeeServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/unittests/services/EmployeeServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/unittests/services/StudentServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/unittests/services/StudentServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +73,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "auth",
+    "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Kaique/Documents/Code/coeus",
