@@ -30,6 +30,8 @@ public class Book {
     @Column(nullable = false)
     private double price;
 
+    private int stock;
+
     public Book() {}
 
     public Long getId() {
@@ -88,14 +90,23 @@ public class Book {
         this.price = price;
     }
 
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof Book book)) return false;
-        return id == book.id && numberOfPages == book.numberOfPages && Double.compare(price, book.price) == 0 && Objects.equals(bookName, book.bookName) && Objects.equals(authorName, book.authorName) && Objects.equals(publisherName, book.publisherName) && Objects.equals(genre, book.genre);
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return numberOfPages == book.numberOfPages && Double.compare(price, book.price) == 0 && stock == book.stock && Objects.equals(id, book.id) && Objects.equals(bookName, book.bookName) && Objects.equals(authorName, book.authorName) && Objects.equals(publisherName, book.publisherName) && Objects.equals(genre, book.genre);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, bookName, authorName, publisherName, numberOfPages, genre, price);
+        return Objects.hash(id, bookName, authorName, publisherName, numberOfPages, genre, price, stock);
     }
 }

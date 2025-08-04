@@ -127,6 +127,7 @@ class BookControllerJsonTest extends AbstractIntegrationTest {
         assertEquals(11, createdDTO.getNumberOfPages());
         assertEquals("MockGenre", createdDTO.getGenre());
         assertEquals(11, createdDTO.getPrice());
+        assertEquals(11, createdDTO.getStock());
     }
 
     @Test
@@ -158,6 +159,7 @@ class BookControllerJsonTest extends AbstractIntegrationTest {
         assertEquals(11, createdDTO.getNumberOfPages());
         assertEquals("MockGenre", createdDTO.getGenre());
         assertEquals(11, createdDTO.getPrice());
+        assertEquals(11, createdDTO.getStock());
     }
 
     @Test
@@ -187,6 +189,7 @@ class BookControllerJsonTest extends AbstractIntegrationTest {
         assertEquals(11, createdDTO.getNumberOfPages());
         assertEquals("MockGenre", createdDTO.getGenre());
         assertEquals(11, createdDTO.getPrice());
+        assertEquals(11, createdDTO.getStock());
     }
 
     @Test
@@ -251,6 +254,7 @@ class BookControllerJsonTest extends AbstractIntegrationTest {
         bookDTO.setNumberOfPages(11);
         bookDTO.setGenre("MockGenre");
         bookDTO.setPrice(11);
+        bookDTO.setStock(11);
     }
 
 }

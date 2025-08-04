@@ -5,7 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f0b0d76f-3962-4f49-841e-77f001e9ccb1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/models/Loan.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/models/dtos/LoanCreateDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/models/dtos/LoanResponseDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/models/enums/LoanStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/models/mapper/LoanMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/repositories/LoanRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/books/src/main/resources/db/migration/V14__Alter_Table_Book.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/books/src/main/resources/db/migration/V15__Create_Table_Loan.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/models/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/models/Book.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/models/dtos/BookDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/models/dtos/BookDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/src/main/resources/db/migration/V13__Create_Table_Refresh_Tokens.sql" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/main/resources/db/migration/V13__Create_Table_Refresh_Tokens.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/withjson/BookControllerJsonTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/withjson/BookControllerJsonTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/dto/BookDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/dto/BookDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/unittests/mocks/MockBook.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/unittests/mocks/MockBook.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,10 +30,11 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Record" />
-        <option value="Interface" />
         <option value="Exception" />
         <option value="JUnit5 Test Class" />
+        <option value="Enum" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -73,7 +88,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "loan",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Kaique/Documents/Code/coeus",

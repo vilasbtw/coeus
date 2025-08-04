@@ -14,6 +14,7 @@ public class BookDTO {
     private int numberOfPages;
     private String genre;
     private double price;
+    private int stock;
 
     public BookDTO() {}
 
@@ -73,15 +74,23 @@ public class BookDTO {
         this.price = price;
     }
 
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof BookDTO bookDTO)) return false;
-        if (!super.equals(o)) return false;
-        return numberOfPages == bookDTO.numberOfPages && Double.compare(price, bookDTO.price) == 0 && Objects.equals(id, bookDTO.id) && Objects.equals(bookName, bookDTO.bookName) && Objects.equals(authorName, bookDTO.authorName) && Objects.equals(publisherName, bookDTO.publisherName) && Objects.equals(genre, bookDTO.genre);
+        if (o == null || getClass() != o.getClass()) return false;
+        BookDTO bookDTO = (BookDTO) o;
+        return numberOfPages == bookDTO.numberOfPages && Double.compare(price, bookDTO.price) == 0 && stock == bookDTO.stock && Objects.equals(id, bookDTO.id) && Objects.equals(bookName, bookDTO.bookName) && Objects.equals(authorName, bookDTO.authorName) && Objects.equals(publisherName, bookDTO.publisherName) && Objects.equals(genre, bookDTO.genre);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), id, bookName, authorName, publisherName, numberOfPages, genre, price);
+        return Objects.hash(id, bookName, authorName, publisherName, numberOfPages, genre, price, stock);
     }
 }

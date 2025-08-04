@@ -21,6 +21,7 @@ public class MockBook {
         book.setNumberOfPages(number);
         book.setGenre("Genre: " + number);
         book.setPrice(number);
+        book.setStock(number);
         return book;
     }
 
@@ -46,6 +47,7 @@ public class MockBook {
         bookDTO.setNumberOfPages(number);
         bookDTO.setGenre("Genre: " + number);
         bookDTO.setPrice(number);
+        bookDTO.setStock(number);
         return bookDTO;
     }
 
