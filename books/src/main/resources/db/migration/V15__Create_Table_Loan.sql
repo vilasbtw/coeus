@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS loan (
     student_id INT NOT NULL,
     book_id INT NOT NULL,
     employee_id INT NOT NULL,
-    loan_date DATE NOT NULL DEFAULT CURRENT_DATE,
+    loan_date DATE NOT NULL,
     due_date DATE NOT NULL,
     return_date DATE,
     status VARCHAR(50) NOT NULL DEFAULT 'ON_GOING',

@@ -1,13 +1,11 @@
 package com.coeus.api.models.dtos;
 
-import java.time.LocalDate;
 import java.util.Objects;
 
     /*
     /   this DTO goal is to represent only the essential data to create a new loan in the system.
     /   fields like: loanDate, status, returnDate, employee, etc. are managed by the backend.
-    /   used only by POST/loans requests, where the Employee will
-    /   link the Book to a Student, defining a due date for the return.
+    /
     */
 
 // since this object won't be returned by the API,
@@ -16,7 +14,6 @@ public class LoanCreateDTO {
 
     private Long studentId;
     private Long bookId;
-    private LocalDate dueDate;
 
     public LoanCreateDTO() {
     }
@@ -37,24 +34,15 @@ public class LoanCreateDTO {
         this.bookId = bookId;
     }
 
-    public LocalDate getDueDate() {
-        return dueDate;
-    }
-
-    public void setDueDate(LocalDate dueDate) {
-        this.dueDate = dueDate;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
         LoanCreateDTO that = (LoanCreateDTO) o;
-        return Objects.equals(studentId, that.studentId) && Objects.equals(bookId, that.bookId) && Objects.equals(dueDate, that.dueDate);
+        return Objects.equals(studentId, that.studentId) && Objects.equals(bookId, that.bookId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), studentId, bookId, dueDate);
+        return Objects.hash(studentId, bookId);
     }
 }
