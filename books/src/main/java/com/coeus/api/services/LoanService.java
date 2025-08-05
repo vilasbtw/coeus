@@ -10,10 +10,12 @@ import com.coeus.api.models.dtos.LoanCreateDTO;
 import com.coeus.api.models.dtos.LoanResponseDTO;
 import com.coeus.api.models.enums.LoanStatus;
 import com.coeus.api.models.mapper.LoanMapper;
+import com.coeus.api.models.security.user.User;
 import com.coeus.api.repositories.BookRepository;
 import com.coeus.api.repositories.EmployeeRepository;
 import com.coeus.api.repositories.LoanRepository;
 import com.coeus.api.repositories.StudentRepository;
+import com.coeus.api.repositories.security.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PagedResourcesAssembler;
@@ -35,17 +37,21 @@ public class LoanService {
     private final BookRepository bookRepository;
     private final StudentRepository studentRepository;
     private final EmployeeRepository employeeRepository;
+    private final UserRepository userRepository;
+
     private final LoanMapper loanMapper;
     private final PagedResourcesAssembler<LoanResponseDTO> assembler;
 
     @Autowired
     public LoanService(LoanRepository loanRepository, BookRepository bookRepository,
                        StudentRepository studentRepository, EmployeeRepository employeeRepository,
-                       LoanMapper loanMapper, PagedResourcesAssembler<LoanResponseDTO> assembler) {
+                       UserRepository userRepository, LoanMapper loanMapper,
+                       PagedResourcesAssembler<LoanResponseDTO> assembler) {
         this.loanRepository = loanRepository;
         this.bookRepository = bookRepository;
         this.studentRepository = studentRepository;
         this.employeeRepository = employeeRepository;
+        this.userRepository = userRepository;
         this.loanMapper = loanMapper;
         this.assembler = assembler;
     }
@@ -171,8 +177,11 @@ public PagedModel<EntityModel<LoanResponseDTO>> findByStudent(Long studentId, Pa
             username = principal.toString();
         }
 
-        return employeeRepository.findByEmail(username)
-                .orElseThrow(() -> new ResourceNotFoundException("Authenticated employee not found"));
+        var user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new ResourceNotFoundException("Authenticated user not found"));
+
+        return employeeRepository.findById(user.getEmployeeId())
+                .orElseThrow(() -> new ResourceNotFoundException("Employee not found for this user"));
     }
 
     private static void addHateoasLinks(LoanResponseDTO dto) {

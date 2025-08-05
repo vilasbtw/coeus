@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "259b21d5-2db5-4c07-ad53-ac07ea3cabde",
+		"_postman_id": "6d6c83f7-cf1e-450f-8afe-a676b2a7b3a5",
 		"name": "Coeus RESTful API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "39878816"
@@ -12,11 +12,26 @@
 				{
 					"name": "Finds all students",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb2V1cyIsInN1YiI6Imt2aWxhcyIsImV4cCI6MTc1MjI0ODc0Nn0.fULhjMiGtqTp7afUxEIthOGFwVpPduYYNCqQtX-YwAQ",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [
 							{
 								"key": "Accept",
 								"value": "application/json"
+							},
+							{
+								"key": "Origin",
+								"value": "http://localhost:3000",
+								"type": "text"
 							}
 						],
 						"url": {
@@ -397,6 +412,16 @@
 				{
 					"name": "Adds a student",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [
 							{
@@ -410,7 +435,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"id\": -36666014,\n  \"studentRegister\": \"laboris\",\n  \"name\": \"dolor\",\n  \"email\": \"Duis nisi\",\n  \"course\": \"ad\",\n  \"_links\": {\n    \"Lorem_1\": {\n      \"href\": \"ut qui dolor cupidatat minim\",\n      \"hreflang\": \"enim exercitation adipis\",\n      \"title\": \"labore sed\",\n      \"type\": \"dolore laborum proident\",\n      \"deprecation\": \"dolore ipsum\",\n      \"profile\": \"sed ipsum incididunt\",\n      \"name\": \"cillum\",\n      \"templated\": false\n    }\n  }\n}",
+							"raw": "{\n  \"username\": \"kvilas\",\n  \"password\": \"123\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -418,12 +443,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/students",
+							"raw": "{{baseUrl}}/auth/login",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"students"
+								"auth",
+								"login"
 							]
 						},
 						"description": "Adds a new student by passing in a JSON, XML or YML representation of the student."
@@ -1224,20 +1250,40 @@
 				{
 					"name": "Finds all employees",
 					"request": {
-						"method": "GET",
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
 						"header": [
 							{
 								"key": "Accept",
 								"value": "application/json"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"refreshToken\": \"fce2d851-4aea-4a90-9038-183971c49071\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "{{baseUrl}}/employees",
+							"raw": "{{baseUrl}}/auth/refresh-token",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"employees"
+								"auth",
+								"refresh-token"
 							]
 						}
 					},
@@ -3215,6 +3261,274 @@
 							"body": ""
 						}
 					]
+				}
+			]
+		},
+		{
+			"name": "authentication",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"flima\",\r\n    \"password\": \"123\",\r\n    \"role\": \"COORDINATOR\",\r\n    \"employee_id\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/register",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"flima\",\n    \"password\": \"123\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "refresh",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"refreshToken\": \"f3397ba9-f364-4b55-b372-24f9db2dca24\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/refresh-token",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"refresh-token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "loans",
+			"item": [
+				{
+					"name": "Creates a loan",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb2V1cyIsInN1YiI6ImZsaW1hIiwiZXhwIjoxNzU0NDIwMTE2fQ.EbD0uiVgaOOPtax6mCf31sytRvF0sUmHZQ_Kt5MZ5KY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"studentId\": 1,\n  \"bookId\": 1\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/loans",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"loans"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Returns a loan",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb2V1cyIsInN1YiI6ImZsaW1hIiwiZXhwIjoxNzU0NDIwMTE2fQ.EbD0uiVgaOOPtax6mCf31sytRvF0sUmHZQ_Kt5MZ5KY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/loans/1/return",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"loans",
+								"1",
+								"return"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Finds loans by student",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb2V1cyIsInN1YiI6ImZsaW1hIiwiZXhwIjoxNzU0NDIwMTE2fQ.EbD0uiVgaOOPtax6mCf31sytRvF0sUmHZQ_Kt5MZ5KY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/loans/student/1?page=0&size=12&direction=asc",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"loans",
+								"student",
+								"1"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "12"
+								},
+								{
+									"key": "direction",
+									"value": "asc"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Finds overdue loans",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb2V1cyIsInN1YiI6ImZsaW1hIiwiZXhwIjoxNzU0NDIwMTE2fQ.EbD0uiVgaOOPtax6mCf31sytRvF0sUmHZQ_Kt5MZ5KY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/loans/overdue?page=0&size=12&direction=asc",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"loans",
+								"overdue"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "12"
+								},
+								{
+									"key": "direction",
+									"value": "asc"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
