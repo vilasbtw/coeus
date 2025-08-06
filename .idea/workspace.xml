@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f0b0d76f-3962-4f49-841e-77f001e9ccb1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/unittests/mapper/LoanMapperTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/unittests/mocks/MockLoan.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/unittests/mocks/MockUser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/unittests/services/LoanServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/services/LoanService.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/services/LoanService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/postman/collections/Coeus RESTful API.postman_collection.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/postman/collections/Coeus RESTful API.postman_collection.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,8 +23,8 @@
         <option value="JUnit5 Test Class" />
         <option value="Enum" />
         <option value="Exception" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -50,39 +52,41 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.CoeusApplication.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.All in books (1).executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.All in books.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AuthorizationControllerJsonTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AuthorizationControllerXmlTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AuthorizationControllerYamlTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.BookControllerJsonTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.BookControllerXmlTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.BookServiceTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.EmployeeControllerJsonTest.create.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.EmployeeControllerJsonTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.EmployeeServiceTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.StudentControllerCorsTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.StudentControllerJsonTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.StudentControllerYamlTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.StudentRepositoryTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.StudentServiceTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.SwaggerIntegrationTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.java in books.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;loan&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Kaique/Documents/Code/coeus&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;Docker&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.CoeusApplication.executor": "Run",
+    "JUnit.All in books (1).executor": "Run",
+    "JUnit.All in books.executor": "Run",
+    "JUnit.AuthorizationControllerJsonTest.executor": "Run",
+    "JUnit.AuthorizationControllerXmlTest.executor": "Run",
+    "JUnit.AuthorizationControllerYamlTest.executor": "Run",
+    "JUnit.BookControllerJsonTest.executor": "Run",
+    "JUnit.BookControllerXmlTest.executor": "Run",
+    "JUnit.BookServiceTest.executor": "Run",
+    "JUnit.EmployeeControllerJsonTest.create.executor": "Run",
+    "JUnit.EmployeeControllerJsonTest.executor": "Run",
+    "JUnit.EmployeeServiceTest.executor": "Run",
+    "JUnit.LoanMapperTest.executor": "Run",
+    "JUnit.LoanServiceTest.executor": "Run",
+    "JUnit.StudentControllerCorsTest.executor": "Run",
+    "JUnit.StudentControllerJsonTest.executor": "Run",
+    "JUnit.StudentControllerYamlTest.executor": "Run",
+    "JUnit.StudentRepositoryTest.executor": "Run",
+    "JUnit.StudentServiceTest.executor": "Run",
+    "JUnit.SwaggerIntegrationTest.executor": "Run",
+    "JUnit.java in books.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "loan",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Kaique/Documents/Code/coeus",
+    "settings.editor.selected.configurable": "Docker"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.coeus.api.models.dtos" />
@@ -115,7 +119,7 @@
       <recent name="com.coeus.api.integrationtests.dto.wrapper.json" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.CoeusApplication">
+  <component name="RunManager" selected="JUnit.LoanMapperTest">
     <configuration name="CoeusApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.coeus.api.CoeusApplication" />
       <module name="books" />
@@ -129,22 +133,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BookServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="LoanMapperTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="books" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.coeus.api.unittests.services.*" />
+          <option name="PATTERN" value="com.coeus.api.unittests.mapper.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.coeus.api.unittests.services" />
-      <option name="MAIN_CLASS_NAME" value="com.coeus.api.unittests.services.BookServiceTest" />
+      <option name="PACKAGE_NAME" value="com.coeus.api.unittests.mapper" />
+      <option name="MAIN_CLASS_NAME" value="com.coeus.api.unittests.mapper.LoanMapperTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="EmployeeServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="LoanServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="books" />
       <extension name="coverage">
         <pattern>
@@ -153,7 +157,7 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.coeus.api.unittests.services" />
-      <option name="MAIN_CLASS_NAME" value="com.coeus.api.unittests.services.EmployeeServiceTest" />
+      <option name="MAIN_CLASS_NAME" value="com.coeus.api.unittests.services.LoanServiceTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -184,11 +188,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.LoanMapperTest" />
+        <item itemvalue="JUnit.LoanServiceTest" />
         <item itemvalue="Application.CoeusApplication" />
         <item itemvalue="JUnit.java in books" />
         <item itemvalue="JUnit.StudentServiceTest" />
-        <item itemvalue="JUnit.EmployeeServiceTest" />
-        <item itemvalue="JUnit.BookServiceTest" />
       </list>
     </recent_temporary>
   </component>
