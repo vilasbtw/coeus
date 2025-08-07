@@ -178,14 +178,16 @@ This project includes both **unit tests** and **integration tests** to ensure co
 
 ### Next Features:
 
-- [ ] Implement the logic of renting books;
-- [ ] Implement warning and penalty system;
-- [ ] Add React-based front-end;
+- [ ] Remove Swagger doubled authentication endpoint;
+- [ ] Update README.md;
+- [ ] Add React-based front-end;  
+
 - [ ] Dockerize the application;
 - [ ] Deploy the API on AWS;
 - [ ] Continous Deployment AWS with GitHub Actions;
 - [ ] Deploy the API on GCP;
-- [ ] Continous Deployment GCP with GitHub Actions;
+- [ ] Continous Deployment GCP with GitHub Actions;  
+
 - [ ] Add MIT license;
 
 ### Completed:
@@ -206,5 +208,7 @@ This project includes both **unit tests** and **integration tests** to ensure co
 - [x] Written integration tests with Testcontainers and REST Assured;
 - [x] Configured and enable CORS;
 - [x] Added pagination support to student listing;
-- [x] Add Spring Security + JWT;
-- [x] Implement Integration Tests for Spring Security;
+- [x] Added Spring Security + JWT;
+- [x] Implemented Integration Tests for Spring Security;
+- [x] Implemented the logic of renting books;
+- [x] Implemented warning and penalty system;

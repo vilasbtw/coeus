@@ -1,11 +1,12 @@
 package com.coeus.api.integrationtests.dto;
 
 import com.coeus.api.models.enums.WarningStatus;
+import jakarta.xml.bind.annotation.XmlRootElement;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-
+@XmlRootElement
 public class WarningDTO {
 
     private Long id;

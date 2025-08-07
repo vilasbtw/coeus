@@ -5,29 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f0b0d76f-3962-4f49-841e-77f001e9ccb1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/controllers/WarningController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/controllers/docs/WarningControllerDocs.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/exceptions/DuplicateWarningForLoanException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/exceptions/LoanNotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/exceptions/StudentWithPendingWarningsException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/exceptions/UnauthorizedWarningDeleteException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/exceptions/WarningNotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/models/Warning.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/models/dtos/WarningDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/models/enums/WarningStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/models/mapper/WarningMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/repositories/WarningRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/services/WarningService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/books/src/main/resources/db/migration/V16__Create_Table_Migration.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/dto/WarningDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/dto/wrapper/xml/PagedModelWarning.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/unittests/mapper/WarningMapperTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/unittests/mocks/MockWarning.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/unittests/services/WarningServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/withjson/WarningControllerJsonTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/withxml/WarningControllerXmlTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/controllers/withyaml/WarningControlleryYamlTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/dto/wrapper/json/WarningEmbeddedDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/dto/wrapper/json/WrapperWarningDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/exceptions/handlers/CustomizedResponseEntityExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/exceptions/handlers/CustomizedResponseEntityExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/models/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/main/java/com/coeus/api/models/Employee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/postman/collections/Coeus RESTful API.postman_collection.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/postman/collections/Coeus RESTful API.postman_collection.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/dto/WarningDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/books/src/test/java/com/coeus/api/integrationtests/dto/WarningDTO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,6 +81,9 @@
     "JUnit.StudentRepositoryTest.executor": "Run",
     "JUnit.StudentServiceTest.executor": "Run",
     "JUnit.SwaggerIntegrationTest.executor": "Run",
+    "JUnit.WarningControllerJsonTest.executor": "Run",
+    "JUnit.WarningControllerXmlTest.executor": "Run",
+    "JUnit.WarningControllerYamlTest.executor": "Run",
     "JUnit.WarningMapperTest.executor": "Run",
     "JUnit.WarningServiceTest.executor": "Run",
     "JUnit.java in books.executor": "Run",
@@ -104,7 +92,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "warning",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Kaique/Documents/Code/coeus/books/src/test/java/com/coeus/api/integrationtests/dto",
@@ -144,21 +132,53 @@
       <recent name="com.coeus.api.integrationtests.dto.wrapper.json" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.WarningServiceTest">
-    <configuration name="CoeusApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.coeus.api.CoeusApplication" />
+  <component name="RunManager" selected="JUnit.java in books">
+    <configuration name="LoanControllerJsonTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="books" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.coeus.api.*" />
+          <option name="PATTERN" value="com.coeus.api.integrationtests.controllers.withjson.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="com.coeus.api.integrationtests.controllers.withjson" />
+      <option name="MAIN_CLASS_NAME" value="com.coeus.api.integrationtests.controllers.withjson.LoanControllerJsonTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LoanControllerYamlTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="WarningControllerJsonTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="books" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.coeus.api.integrationtests.controllers.withjson.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.coeus.api.integrationtests.controllers.withjson" />
+      <option name="MAIN_CLASS_NAME" value="com.coeus.api.integrationtests.controllers.withjson.WarningControllerJsonTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WarningControllerXmlTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="books" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.coeus.api.integrationtests.controllers.withxml.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.coeus.api.integrationtests.controllers.withxml" />
+      <option name="MAIN_CLASS_NAME" value="com.coeus.api.integrationtests.controllers.withxml.WarningControllerXmlTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WarningControllerYamlTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="books" />
       <extension name="coverage">
         <pattern>
@@ -167,37 +187,7 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.coeus.api.integrationtests.controllers.withyaml" />
-      <option name="MAIN_CLASS_NAME" value="com.coeus.api.integrationtests.controllers.withyaml.LoanControllerYamlTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="WarningMapperTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="books" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.coeus.api.unittests.mapper.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.coeus.api.unittests.mapper" />
-      <option name="MAIN_CLASS_NAME" value="com.coeus.api.unittests.mapper.WarningMapperTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="WarningServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="books" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.coeus.api.unittests.services.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.coeus.api.unittests.services" />
-      <option name="MAIN_CLASS_NAME" value="com.coeus.api.unittests.services.WarningServiceTest" />
+      <option name="MAIN_CLASS_NAME" value="com.coeus.api.integrationtests.controllers.withyaml.WarningControllerYamlTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -213,11 +203,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.WarningServiceTest" />
-        <item itemvalue="JUnit.WarningMapperTest" />
-        <item itemvalue="Application.CoeusApplication" />
         <item itemvalue="JUnit.java in books" />
-        <item itemvalue="JUnit.LoanControllerYamlTest" />
+        <item itemvalue="JUnit.WarningControllerYamlTest" />
+        <item itemvalue="JUnit.WarningControllerXmlTest" />
+        <item itemvalue="JUnit.WarningControllerJsonTest" />
+        <item itemvalue="JUnit.LoanControllerJsonTest" />
       </list>
     </recent_temporary>
   </component>
