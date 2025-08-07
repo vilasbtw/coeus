@@ -21,9 +21,6 @@ public class Employee {
     @Column(nullable = false)
     private String email;
 
-    // TO-DO:
-    // Implement fields: password_hash and role for JWT and Spring Security
-
     public Employee() {}
 
     public Long getId() {

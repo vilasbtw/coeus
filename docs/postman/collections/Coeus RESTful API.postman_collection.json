@@ -3365,7 +3365,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb2V1cyIsInN1YiI6ImZsaW1hIiwiZXhwIjoxNzU0NDIwMTE2fQ.EbD0uiVgaOOPtax6mCf31sytRvF0sUmHZQ_Kt5MZ5KY",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb2V1cyIsInN1YiI6ImZsaW1hIiwiZXhwIjoxNzU0NTgzNDg2fQ.errohidCD9ZB_nzxt3kIeCMHte0ZIQ0ZfzHsvCIU4zw",
 									"type": "string"
 								}
 							]
@@ -3511,6 +3511,265 @@
 							"path": [
 								"loans",
 								"overdue"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "12"
+								},
+								{
+									"key": "direction",
+									"value": "asc"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "warnings",
+			"item": [
+				{
+					"name": "Creates a warning",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb2V1cyIsInN1YiI6ImZsaW1hIiwiZXhwIjoxNzU0NTgzODE5fQ._ZXUNG3S2ZyPhNUbapRMXysYkAU38g3sf_NtIha1S38",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"studentId\": 1,\n  \"employeeId\": 1,\n  \"loanId\": 1,\n  \"reason\": \"Livro rabiscado\",\n  \"details\": \"Aluno devolveu o livro com páginas desenhadas\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/warnings",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"warnings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Finds all warnings",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb2V1cyIsInN1YiI6ImZsaW1hIiwiZXhwIjoxNzU0NTgzODE5fQ._ZXUNG3S2ZyPhNUbapRMXysYkAU38g3sf_NtIha1S38",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/warnings?page=0&size=12&direction=asc",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"warnings"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "12"
+								},
+								{
+									"key": "direction",
+									"value": "asc"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Finds a warning by ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb2V1cyIsInN1YiI6ImZsaW1hIiwiZXhwIjoxNzU0NTgzODE5fQ._ZXUNG3S2ZyPhNUbapRMXysYkAU38g3sf_NtIha1S38",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/warnings/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"warnings",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Resolves a warning",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb2V1cyIsInN1YiI6ImZsaW1hIiwiZXhwIjoxNzU0NTgzODE5fQ._ZXUNG3S2ZyPhNUbapRMXysYkAU38g3sf_NtIha1S38",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/warnings/1/resolve",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"warnings",
+								"1",
+								"resolve"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletes a warning",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb2V1cyIsInN1YiI6ImZsaW1hIiwiZXhwIjoxNzU0NTgzODE5fQ._ZXUNG3S2ZyPhNUbapRMXysYkAU38g3sf_NtIha1S38",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/warnings/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"warnings",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb2V1cyIsInN1YiI6ImZsaW1hIiwiZXhwIjoxNzU0NTgzODE5fQ._ZXUNG3S2ZyPhNUbapRMXysYkAU38g3sf_NtIha1S38",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/warnings/student/1?page=0&size=12&direction=asc",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"warnings",
+								"student",
+								"1"
 							],
 							"query": [
 								{
